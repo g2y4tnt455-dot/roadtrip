@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///C:/Users/daniel/Downloads/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Coast Trip">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a5f7a">
+<title>Pacific Coast Road Trip</title>
+<link rel="manifest" href="file:///C:/Users/daniel/Downloads/manifest.json">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --ocean: #1a5f7a;
+    --ocean-dark: #0d3d52;
+    --ocean-mid: #3d8fa8;
+    --ocean-light: #e8f4f8;
+    --sunset: #d4603a;
+    --sunset-light: #fdf0ea;
+    --forest: #2d5a3d;
+    --forest-light: #eaf3ee;
+    --sand: #f7f3ed;
+    --white: #ffffff;
+    --text: #1c1c1c;
+    --text-muted: #6b7280;
+    --border: rgba(0,0,0,0.08);
+    --nav-height: 64px;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--text);
+    overscroll-behavior: none;
+  }
+
+  /* APP SHELL */
+  .app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+
+  /* TOP HEADER */
+  .app-header {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean) 60%, var(--ocean-mid) 100%);
+    color: white;
+    padding: 12px 16px 10px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .app-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  .app-subtitle {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .progress-info {
+    text-align: right;
+    font-size: 0.72rem;
+    opacity: 0.85;
+  }
+  .progress-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: white;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  /* DAY PILL SCROLLER */
+  .day-scroller {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-shrink: 0;
+  }
+  .day-scroller::-webkit-scrollbar { display: none; }
+  .day-pills {
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+    min-width: max-content;
+  }
+  .day-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: all 0.18s;
+    background: white;
+    min-width: 70px;
+  }
+  .day-pill.active {
+    background: var(--ocean);
+    border-color: var(--ocean);
+    color: white;
+  }
+  .pill-day { font-size: 0.68rem; font-weight: 500; opacity: 0.7; }
+  .day-pill.active .pill-day { opacity: 0.8; color: white; }
+  .pill-label { font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+
+  /* MAIN SCROLL AREA */
+  .main-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 16px);
+  }
+
+  /* DAY HERO CARD */
+  .day-hero {
+    margin: 12px 14px 0;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    height: 180px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+  .day-hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .day-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,61,82,0.85) 0%, rgba(13,61,82,0.2) 60%, transparent 100%);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .hero-date { font-size: 0.68rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: white; font-weight: 600; line-height: 1.2; }
+  .hero-sub { font-size: 0.75rem; color: rgba(255,255,255,0.8); margin-top: 3px; }
+  .hero-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 500;
+  }
+
+  /* ROUTE BUTTON */
+  .route-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 11px 14px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+  .route-btn-left { display: flex; align-items: center; gap: 8px; }
+  .route-icon { font-size: 18px; }
+  .route-text { line-height: 1.3; }
+  .route-label { font-size: 0.68rem; color: var(--text-muted); font-weight: 400; }
+  .route-arrow { color: var(--ocean); font-size: 1.1rem; }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    padding: 10px 14px 4px;
+  }
+
+  /* STOP CARDS */
+  .stops-list { padding: 0 14px; display: flex; flex-direction: column; gap: 8px; }
+  .stop-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.15s;
+    active-transform: scale(0.98);
+  }
+  .stop-card.featured { border-color: var(--ocean-mid); border-width: 1.5px; }
+  .stop-card.food-card { border-color: #f0d58a; }
+  .stop-card.hotel-card { border-color: var(--sunset); }
+
+  .stop-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 14px 8px;
+    gap: 10px;
+  }
+  .stop-icon-wrap {
+    width: 38px; height: 38px; min-width: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    background: var(--ocean-light);
+  }
+  .stop-icon-wrap.food { background: #fff8e6; }
+  .stop-icon-wrap.hotel { background: var(--sunset-light); }
+  .stop-icon-wrap.forest { background: var(--forest-light); }
+  .stop-icon-wrap.highlight { background: var(--ocean); }
+
+  .stop-info { flex: 1; }
+  .stop-time { font-size: 0.68rem; color: var(--text-muted); font-weight: 500; margin-bottom: 2px; }
+  .stop-name { font-size: 0.95rem; font-weight: 600; line-height: 1.25; color: var(--text); }
+  .stop-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; padding: 0 14px 10px; }
+
+  /* TAGS */
+  .stop-tags { display: flex; flex-wrap: wrap; gap: 5px; padding: 0 14px 8px; }
+  .tag {
+    font-size: 0.68rem; padding: 3px 8px; border-radius: 20px; font-weight: 500;
+  }
+  .tag-access { background: var(--forest-light); color: var(--forest); }
+  .tag-crowd { background: var(--ocean-light); color: var(--ocean); }
+  .tag-star { background: #fff3e0; color: #b45309; }
+
+  /* ACTION BUTTONS */
+  .stop-actions {
+    display: flex;
+    border-top: 1px solid var(--border);
+  }
+  .action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--ocean);
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .action-btn:last-child { border-right: none; }
+  .action-btn:active { background: var(--ocean-light); }
+  .action-btn.directions { color: var(--sunset); }
+  .action-btn.search { color: var(--forest); }
+
+  /* TIP BOX */
+  .tip-box {
+    margin: 4px 14px 0;
+    background: #fff8e6;
+    border-left: 3px solid #f59e0b;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    color: #78350f;
+    line-height: 1.6;
+  }
+  .tip-box strong { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; color: #b45309; }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: calc(var(--nav-height) + var(--safe-bottom));
+    background: white;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 8px;
+    padding-bottom: var(--safe-bottom);
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+  }
+  .nav-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: all 0.15s;
+  }
+  .nav-icon { font-size: 22px; line-height: 1; }
+  .nav-label { font-size: 0.62rem; font-weight: 500; color: var(--text-muted); }
+  .nav-btn.active .nav-label { color: var(--ocean); font-weight: 600; }
+  .nav-btn.active .nav-icon { transform: scale(1.1); }
+
+  /* OVERVIEW SCREEN */
+  .overview-screen { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+  .overview-hero {
+    background: linear-gradient(135deg, var(--ocean-dark), var(--ocean-mid));
+    border-radius: 18px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+  }
+  .overview-hero h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 4px; }
+  .overview-hero p { font-size: 0.8rem; opacity: 0.8; margin-bottom: 16px; }
+  .stats-row { display: flex; gap: 10px; justify-content: center; }
+  .stat-pill {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .stat-pill b { display: block; font-size: 1rem; }
+
+  .overview-day-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .overview-day-card:active { transform: scale(0.98); background: var(--ocean-light); }
+  .day-num-badge {
+    width: 40px; height: 40px; min-width: 40px;
+    background: var(--ocean);
+    border-radius: 12px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: white;
+  }
+  .day-num-badge .dn { font-size: 0.6rem; opacity: 0.8; }
+  .day-num-badge .dd { font-size: 1rem; font-weight: 700; line-height: 1; }
+  .odc-info { flex: 1; }
+  .odc-title { font-weight: 600; font-size: 0.9rem; }
+  .odc-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+  .odc-arrow { color: var(--text-muted); font-size: 1.1rem; }
+
+  /* TIPS SCREEN */
+  .tips-screen { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+  .tip-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 14px;
+  }
+  .tip-card h3 { font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .tip-card p, .tip-card li { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+  .tip-card ul { padding-left: 16px; }
+
+  /* SCREEN VISIBILITY */
+  .screen { display: none; }
+  .screen.active { display: block; }
+  .day-section { display: none; }
+  .day-section.active { display: block; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- TOP HEADER -->
+  <div class="app-header">
+    <div class="header-top">
+      <div>
+        <div class="app-title">🌊 Pacific Coast Trip</div>
+        <div class="app-subtitle">July 9–15, 2025</div>
+      </div>
+      <div class="progress-info" id="progress-info">Day 1 of 7</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:14%"></div></div>
+  </div>
+
+  <!-- DAY PILL SCROLLER (only on itinerary screen) -->
+  <div class="day-scroller" id="day-scroller">
+    <div class="day-pills">
+      <div class="day-pill active" onclick="showDay(1)"><span class="pill-day">Jul 9</span><span class="pill-label">Day 1</span></div>
+      <div class="day-pill" onclick="showDay(2)"><span class="pill-day">Jul 10</span><span class="pill-label">Day 2</span></div>
+      <div class="day-pill" onclick="showDay(3)"><span class="pill-day">Jul 11</span><span class="pill-label">Day 3</span></div>
+      <div class="day-pill" onclick="showDay(4)"><span class="pill-day">Jul 12</span><span class="pill-label">Day 4</span></div>
+      <div class="day-pill" onclick="showDay(5)"><span class="pill-day">Jul 13</span><span class="pill-label">Day 5</span></div>
+      <div class="day-pill" onclick="showDay(6)"><span class="pill-day">Jul 14</span><span class="pill-label">Day 6</span></div>
+      <div class="day-pill" onclick="showDay(7)"><span class="pill-day">Jul 15</span><span class="pill-label">Day 7</span></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- ITINERARY SCREEN -->
+    <div class="screen active" id="screen-itinerary">
+
+      <!-- DAY 1 -->
+      <div class="day-section active" id="day-1">
+        <div class="day-hero" style="background: linear-gradient(135deg, rgb(13, 61, 82), rgb(26, 95, 122));">
+          <img class="day-hero-img" src="./index_files/800px-USACE_Astoria-Megler_Bridge.jpg" alt="Astoria Bridge" onerror="this.parentElement.style.background=&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;;this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
+            <div class="hero-date">Thursday, July 9</div>
+            <div class="hero-title">Portland → Astoria</div>
+            <div class="hero-sub">via Ilani Casino · Columbia River drive · ~3 hrs</div>
+          </div>
+          <div class="hero-badge">♿ Easy Pace</div>
+        </div>
+        <a class="route-btn" href="https://www.google.com/maps/dir/Portland,+OR/Ilani+Casino+Resort/Astoria,+OR" target="_blank">
+          <div class="route-btn-left"><span class="route-icon">🗺️</span><div class="route-text"><div>Full Day Route</div><div class="route-label">Portland → Ilani → Astoria</div></div></div>
+          <span class="route-arrow">›</span>
+        </a>
+        <div class="section-label">Today's Stops</div>
+        <div class="stops-list">
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🎰</div>
+              <div class="stop-info">
+                <div class="stop-time">12:45 – 2:30 PM</div>
+                <div class="stop-name">Ilani Casino Resort</div>
+              </div>
+            </div>
+            <div class="stop-desc">Lunch, light gaming, or just relax. Large restrooms and seating throughout. Great first stretch stop.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Fully Accessible</span><span class="tag tag-crowd">🟢 Light Crowds</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/ilani" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir/Portland,+OR/ilani+Casino+Resort" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Ilani+Casino+Resort+dining" target="_blank">🔍 Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap">🌊</div>
+              <div class="stop-info">
+                <div class="stop-time">4:00 – 5:30 PM</div>
+                <div class="stop-name">Astoria Riverwalk</div>
+              </div>
+            </div>
+            <div class="stop-desc">Flat paved waterfront. Watch ships pass under the iconic bridge. Benches, cafés, restrooms.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Flat Path</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Astoria+Riverwalk" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Astoria+Riverwalk,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Astoria+Riverwalk+Oregon" target="_blank">🔍 Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap">🏛️</div>
+              <div class="stop-info">
+                <div class="stop-time">5:45 – 6:15 PM</div>
+                <div class="stop-name">Astoria Column</div>
+              </div>
+            </div>
+            <div class="stop-desc">Drive-up viewpoint — no stairs needed. Great late-day light for photos over the Columbia River.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Drive-Up</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Astoria+Column" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Astoria+Column,+OR" target="_blank">↗ Directions</a>
+            </div>
+          </div>
+
+          <div class="stop-card food-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap food">🍽️</div>
+              <div class="stop-info">
+                <div class="stop-time">6:30 – 8:00 PM · Dinner</div>
+                <div class="stop-name">Bridgewater Bistro</div>
+              </div>
+            </div>
+            <div class="stop-desc">River views, ADA access. Or casual seafood near the Riverwalk.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Bridgewater+Bistro+Astoria" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=accessible+restaurants+Astoria+Oregon" target="_blank">🔍 More Options</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end day 1 -->
+
+      <!-- DAY 2 -->
+      <div class="day-section" id="day-2">
+        <div class="day-hero" style="background: linear-gradient(135deg, rgb(13, 61, 82), rgb(26, 95, 122));">
+          <img class="day-hero-img" src="./index_files/800px-Ecola_State_Park_Haystack_Rock.JPG" alt="Haystack Rock" onerror="this.parentElement.style.background=&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;;this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
+            <div class="hero-date">Friday, July 10</div>
+            <div class="hero-title">Cannon Beach &amp; Seaside</div>
+            <div class="hero-sub">Ecola · Haystack Rock · Seaside Promenade</div>
+          </div>
+          <div class="hero-badge">♿ Relaxed</div>
+        </div>
+        <a class="route-btn" href="https://www.google.com/maps/dir/Astoria,+OR/Ecola+State+Park/Cannon+Beach,+OR/Seaside,+OR" target="_blank">
+          <div class="route-btn-left"><span class="route-icon">🗺️</span><div class="route-text"><div>Full Day Route</div><div class="route-label">Astoria → Ecola → Cannon Beach → Seaside</div></div></div>
+          <span class="route-arrow">›</span>
+        </a>
+        <div class="tip-box"><strong>⭐ Timing Tip</strong>Arrive at Ecola early — best light and no crowds. Hit Haystack Rock before 11:30 AM to beat the rush.</div>
+        <div class="section-label">Today's Stops</div>
+        <div class="stops-list">
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🌲</div>
+              <div class="stop-info">
+                <div class="stop-time">9:45 – 10:30 AM · ⭐ Do Not Miss</div>
+                <div class="stop-name">Ecola State Park Overlook</div>
+              </div>
+            </div>
+            <div class="stop-desc">Drive-up viewpoints with benches. The iconic postcard view of Cannon Beach and Haystack Rock from above.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Drive-Up</span><span class="tag tag-star">⭐ Must See</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Ecola+State+Park" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Ecola+State+Park,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Ecola+State+Park+overlook+accessibility" target="_blank">🔍 Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🪨</div>
+              <div class="stop-info">
+                <div class="stop-time">10:45 AM – 12:30 PM</div>
+                <div class="stop-name">Haystack Rock</div>
+              </div>
+            </div>
+            <div class="stop-desc">Paved promenade, flat paths and benches. Most iconic sea stack on the Oregon coast. Downtown galleries nearby.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Promenade</span><span class="tag tag-crowd">🕐 Arrive Before 11:30</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Haystack+Rock,+Cannon+Beach" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Haystack+Rock,+Cannon+Beach,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Cannon+Beach+Oregon+shops+accessible" target="_blank">🔍 Explore</a>
+            </div>
+          </div>
+
+          <div class="stop-card food-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap food">🍽️</div>
+              <div class="stop-info">
+                <div class="stop-time">12:30 – 1:45 PM · Lunch</div>
+                <div class="stop-name">Wayfarer Restaurant</div>
+              </div>
+            </div>
+            <div class="stop-desc">Oceanfront, level entry. Or Driftwood Restaurant &amp; Lounge — great views, wide aisles.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Wayfarer+Restaurant+Cannon+Beach" target="_blank">📍 Wayfarer</a>
+              <a class="action-btn" href="https://www.google.com/maps/place/Driftwood+Restaurant+Cannon+Beach" target="_blank">📍 Driftwood</a>
+            </div>
+          </div>
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🏖️</div>
+              <div class="stop-info">
+                <div class="stop-time">4:00 – 7:30 PM</div>
+                <div class="stop-name">Seaside Promenade</div>
+              </div>
+            </div>
+            <div class="stop-desc">Long flat oceanfront boardwalk. Benches every few minutes. Watch the sunset without touching sand.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Flat Boardwalk</span><span class="tag tag-star">🌅 Sunset Views</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Seaside+Promenade,+OR" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Seaside+Promenade,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Seaside+Oregon+promenade+dining" target="_blank">🔍 Dining</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end day 2 -->
+
+      <!-- DAY 3 -->
+      <div class="day-section" id="day-3">
+        <div class="day-hero" style="background: linear-gradient(135deg, rgb(13, 61, 82), rgb(26, 95, 122));">
+          <img class="day-hero-img" src="./index_files/800px-Yaquina_Head_Lighthouse_-_Oregon.jpg" alt="Yaquina Head Lighthouse" onerror="this.parentElement.style.background=&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;;this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
+            <div class="hero-date">Saturday, July 11</div>
+            <div class="hero-title">Garibaldi → Newport</div>
+            <div class="hero-sub">Cape Meares · Cape Lookout · Sea Lions · Lighthouse</div>
+          </div>
+          <div class="hero-badge">♿ Excellent</div>
+        </div>
+        <a class="route-btn" href="https://www.google.com/maps/dir/Garibaldi,+OR/Cape+Meares+Lighthouse/Cape+Lookout+State+Park/Newport,+OR" target="_blank">
+          <div class="route-btn-left"><span class="route-icon">🗺️</span><div class="route-text"><div>Full Day Route</div><div class="route-label">Garibaldi → Capes → Newport</div></div></div>
+          <span class="route-arrow">›</span>
+        </a>
+        <div class="section-label">Today's Stops</div>
+        <div class="stops-list">
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🏮</div>
+              <div class="stop-info">
+                <div class="stop-time">10:30 – 11:30 AM</div>
+                <div class="stop-name">Cape Meares Lighthouse</div>
+              </div>
+            </div>
+            <div class="stop-desc">Paved overlook with lighthouse and coast views. Light crowds in the morning. Great for photos.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Overlook</span><span class="tag tag-crowd">🟢 Light Crowds</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Cape+Meares+Lighthouse" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Cape+Meares+Lighthouse,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Cape+Meares+Lighthouse+Oregon+visit" target="_blank">🔍 Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap forest">🌲</div>
+              <div class="stop-info">
+                <div class="stop-time">11:45 AM – 1:30 PM</div>
+                <div class="stop-name">Cape Lookout State Park</div>
+              </div>
+            </div>
+            <div class="stop-desc">Cliffside viewpoints, benches, picnic tables. Short paved paths for accessible coastal views.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Paths</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Cape+Lookout+State+Park" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Cape+Lookout+State+Park,+OR" target="_blank">↗ Directions</a>
+            </div>
+          </div>
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🦭</div>
+              <div class="stop-info">
+                <div class="stop-time">4:45 – 6:15 PM</div>
+                <div class="stop-name">Newport Bayfront &amp; Sea Lions</div>
+              </div>
+            </div>
+            <div class="stop-desc">Sea lions, shops, cafés on a flat paved boardwalk. One of the most fun stops on the whole trip!</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Flat Paved</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Newport+Bay+Front" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Newport+Bay+Front,+Newport,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Newport+Oregon+bayfront+sea+lions" target="_blank">🔍 Explore</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap">🏮</div>
+              <div class="stop-info">
+                <div class="stop-time">6:15 – 7:30 PM</div>
+                <div class="stop-name">Yaquina Head Lighthouse</div>
+              </div>
+            </div>
+            <div class="stop-desc">Paved ramp to viewpoint. Accessible restrooms. Beautiful late afternoon light for photos.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Ramp</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Yaquina+Head+Lighthouse" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Yaquina+Head+Lighthouse,+Newport,+OR" target="_blank">↗ Directions</a>
+            </div>
+          </div>
+
+          <div class="stop-card hotel-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap hotel">🏨</div>
+              <div class="stop-info">
+                <div class="stop-time">Tonight's Stay</div>
+                <div class="stop-name">Travelodge Newport</div>
+              </div>
+            </div>
+            <div class="stop-desc">ADA rooms available. Flat streets, easy access, nearby dining.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Travelodge+Newport+OR" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=restaurants+near+Travelodge+Newport+Oregon" target="_blank">🔍 Nearby Dining</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end day 3 -->
+
+      <!-- DAY 4 -->
+      <div class="day-section" id="day-4">
+        <div class="day-hero" style="background: linear-gradient(135deg, rgb(13, 61, 82), rgb(26, 95, 122));">
+          <img class="day-hero-img" src="./index_files/800px-Heceta_Head_Lighthouse_2013.jpg" alt="Heceta Head Lighthouse" onerror="this.parentElement.style.background=&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;;this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
+            <div class="hero-date">Sunday, July 12</div>
+            <div class="hero-title">Newport → Bandon</div>
+            <div class="hero-sub">Heceta Head · Sea Lion Caves · Bandon Sea Stacks</div>
+          </div>
+          <div class="hero-badge">♿ Excellent</div>
+        </div>
+        <a class="route-btn" href="https://www.google.com/maps/dir/Newport,+OR/Heceta+Head+Lighthouse/Florence,+OR/Sea+Lion+Caves/Bandon,+OR" target="_blank">
+          <div class="route-btn-left"><span class="route-icon">🗺️</span><div class="route-text"><div>Full Day Route</div><div class="route-label">Newport → Heceta → Florence → Bandon</div></div></div>
+          <span class="route-arrow">›</span>
+        </a>
+        <div class="section-label">Today's Stops</div>
+        <div class="stops-list">
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🏮</div>
+              <div class="stop-info">
+                <div class="stop-time">10:30 – 11:45 AM</div>
+                <div class="stop-name">Heceta Head Lighthouse</div>
+              </div>
+            </div>
+            <div class="stop-desc">Minimal walking for spectacular views of Oregon's most photographed lighthouse. Go early for lighter crowds.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Minimal Walking</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Heceta+Head+Lighthouse" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Heceta+Head+Lighthouse,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Heceta+Head+Lighthouse+Oregon+visit" target="_blank">🔍 Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card food-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap food">🍽️</div>
+              <div class="stop-info">
+                <div class="stop-time">12:15 – 1:30 PM · Lunch</div>
+                <div class="stop-name">Old Town Florence</div>
+              </div>
+            </div>
+            <div class="stop-desc">Flat streets, many accessible cafés along the Siuslaw River waterfront.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Old+Town+Florence,+OR" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=accessible+restaurants+Old+Town+Florence+Oregon" target="_blank">🔍 Find Restaurants</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap">🦭</div>
+              <div class="stop-info">
+                <div class="stop-time">1:45 – 2:45 PM · Optional</div>
+                <div class="stop-name">Sea Lion Caves</div>
+              </div>
+            </div>
+            <div class="stop-desc">World's largest sea cave — fully accessible via elevator. Skip if conserving energy.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Elevator Access</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Sea+Lion+Caves,+Florence,+OR" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Sea+Lion+Caves+Oregon+tickets+hours" target="_blank">🔍 Tickets &amp; Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🪨</div>
+              <div class="stop-info">
+                <div class="stop-time">4:30 – 6:30 PM · ⭐ Highlight</div>
+                <div class="stop-name">Bandon Beach Sea Stacks</div>
+              </div>
+            </div>
+            <div class="stop-desc">Face Rock, Table Rock and more — stunning sea stacks from paved viewpoints. Pre-sunset lighting is spectacular.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Viewpoints</span><span class="tag tag-star">🌅 Pre-Sunset</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Face+Rock+State+Scenic+Viewpoint" target="_blank">📍 Face Rock</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Face+Rock+State+Scenic+Viewpoint,+Bandon,+OR" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Bandon+Beach+sea+stacks+viewpoints" target="_blank">🔍 Explore</a>
+            </div>
+          </div>
+
+          <div class="stop-card hotel-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap hotel">🏨</div>
+              <div class="stop-info">
+                <div class="stop-time">Tonight's Stay</div>
+                <div class="stop-name">Bandon Inn</div>
+              </div>
+            </div>
+            <div class="stop-desc">Elevator access · ADA rooms · Harbor views · Flat walk to Old Town dining.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Bandon+Inn,+Bandon,+OR" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Old+Town+Bandon+Oregon+dinner+restaurants" target="_blank">🔍 Dinner Nearby</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end day 4 -->
+
+      <!-- DAY 5 -->
+      <div class="day-section" id="day-5">
+        <div class="day-hero" style="background: linear-gradient(135deg, rgb(26, 61, 43), rgb(45, 90, 61));">
+          <img class="day-hero-img" src="./index_files/800px-Redwood_National_Park,_fog_in_the_forest.jpg" alt="Redwood National Park" onerror="this.parentElement.style.background=&#39;linear-gradient(135deg,#1a3d2b,#2d5a3d)&#39;;this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
+            <div class="hero-date">Monday, July 13</div>
+            <div class="hero-title">Bandon → Crescent City</div>
+            <div class="hero-sub">Boardman Corridor · Big Tree Wayside · Redwoods</div>
+          </div>
+          <div class="hero-badge">♿ Excellent</div>
+        </div>
+        <a class="route-btn" href="https://www.google.com/maps/dir/Bandon,+OR/Samuel+H.+Boardman+State+Scenic+Corridor/Crescent+City,+CA" target="_blank">
+          <div class="route-btn-left"><span class="route-icon">🗺️</span><div class="route-text"><div>Full Day Route</div><div class="route-label">Bandon → Boardman → Crescent City</div></div></div>
+          <span class="route-arrow">›</span>
+        </a>
+        <div class="section-label">Today's Stops</div>
+        <div class="stops-list">
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🌊</div>
+              <div class="stop-info">
+                <div class="stop-time">10:30 AM – 12:00 PM · ⭐ Highlight</div>
+                <div class="stop-name">Samuel H. Boardman Corridor</div>
+              </div>
+            </div>
+            <div class="stop-desc">Multiple drive-up pullouts for dramatic cliff and ocean views. One of the most spectacular stretches of the entire Oregon coast. Don't rush it.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Drive-Up Pullouts</span><span class="tag tag-star">⭐ Must See</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Samuel+H.+Boardman+State+Scenic+Corridor" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Samuel+Boardman+Corridor+best+viewpoints" target="_blank">🔍 Best Spots</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap forest">🌲</div>
+              <div class="stop-info">
+                <div class="stop-time">12:00 – 1:00 PM</div>
+                <div class="stop-name">Big Tree Wayside</div>
+              </div>
+            </div>
+            <div class="stop-desc">Iconic coastal redwoods. Flat paved access with benches. Great stretch stop before crossing into California.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Flat Paved</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Big+Tree+Wayside,+OR" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Big+Tree+Wayside,+OR" target="_blank">↗ Directions</a>
+            </div>
+          </div>
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap forest">🌲</div>
+              <div class="stop-info">
+                <div class="stop-time">3:30 – 5:00 PM · Optional</div>
+                <div class="stop-name">Redwood National Park Trails</div>
+              </div>
+            </div>
+            <div class="stop-desc">Paved and firm-surface ADA trails near visitor center. Benches along the way. Walking among the world's tallest trees is unforgettable.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ ADA Trails</span><span class="tag tag-crowd">🟢 Quieter Afternoons</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Redwood+National+and+State+Parks" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Redwood+National+Park+accessible+ADA+trails" target="_blank">🔍 Trail Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card hotel-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap hotel">🌊</div>
+              <div class="stop-info">
+                <div class="stop-time">Tonight's Stay</div>
+                <div class="stop-name">Ocean View Inn &amp; Suites</div>
+              </div>
+            </div>
+            <div class="stop-desc">Crescent City · Ocean views · ADA rooms (call ahead) · Flat parking · Great sunset base.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Ocean+View+Inn+Suites+Crescent+City" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=restaurants+Crescent+City+CA+dinner" target="_blank">🔍 Dinner Nearby</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end day 5 -->
+
+      <!-- DAY 6 -->
+      <div class="day-section" id="day-6">
+        <div class="day-hero" style="background: linear-gradient(135deg, rgb(26, 61, 43), rgb(26, 95, 122));">
+          <img class="day-hero-img" src="./index_files/800px-Avenue_of_the_Giants,_Lady_Bird_Johnson_Grove,_Humboldt_Redwoods_State_Park.jpg" alt="Lady Bird Johnson Grove" onerror="this.parentElement.style.background=&#39;linear-gradient(135deg,#1a3d2b,#1a5f7a)&#39;;this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
+            <div class="hero-date">Tuesday, July 14</div>
+            <div class="hero-title">Crescent City → Mendocino</div>
+            <div class="hero-sub">Lady Bird Grove · Glass Beach · Mendocino Headlands</div>
+          </div>
+          <div class="hero-badge">✨ Luxury Night</div>
+        </div>
+        <a class="route-btn" href="https://www.google.com/maps/dir/Crescent+City,+CA/Lady+Bird+Johnson+Grove/Fort+Bragg,+CA/Mendocino,+CA" target="_blank">
+          <div class="route-btn-left"><span class="route-icon">🗺️</span><div class="route-text"><div>Full Day Route</div><div class="route-label">Crescent City → Lady Bird → Mendocino</div></div></div>
+          <span class="route-arrow">›</span>
+        </a>
+        <div class="section-label">Today's Stops</div>
+        <div class="stops-list">
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap forest">🌲</div>
+              <div class="stop-info">
+                <div class="stop-time">10:30 AM – 12:00 PM · ⭐ Highlight</div>
+                <div class="stop-name">Lady Bird Johnson Grove</div>
+              </div>
+            </div>
+            <div class="stop-desc">Paved trail through towering coastal redwoods. Benches throughout. Lighter crowds in the morning.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Trail</span><span class="tag tag-star">⭐ Must See</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Lady+Bird+Johnson+Grove,+Orick,+CA" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Lady+Bird+Johnson+Grove,+Orick,+CA" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Lady+Bird+Johnson+Grove+accessible+trail" target="_blank">🔍 Trail Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap">💎</div>
+              <div class="stop-info">
+                <div class="stop-time">12:30 – 1:30 PM</div>
+                <div class="stop-name">Glass Beach — Fort Bragg</div>
+              </div>
+            </div>
+            <div class="stop-desc">Colorful sea glass beach with paved viewpoints. Unique and photo-worthy.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Viewpoints</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Glass+Beach,+Fort+Bragg,+CA" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Glass+Beach,+Fort+Bragg,+CA" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Glass+Beach+Fort+Bragg+California" target="_blank">🔍 Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🌊</div>
+              <div class="stop-info">
+                <div class="stop-time">4:00 – 5:30 PM · ⭐ Highlight</div>
+                <div class="stop-name">Mendocino Headlands</div>
+              </div>
+            </div>
+            <div class="stop-desc">Paved cliffside paths with benches and jaw-dropping Pacific views. One of the most scenic spots on the entire trip.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Paths</span><span class="tag tag-star">🌅 Sunset Prep</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Mendocino+Headlands+State+Park" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Mendocino+Headlands+State+Park" target="_blank">↗ Directions</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Mendocino+Headlands+State+Park" target="_blank">🔍 Info</a>
+            </div>
+          </div>
+
+          <div class="stop-card hotel-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap hotel">✨</div>
+              <div class="stop-info">
+                <div class="stop-time">Tonight's Stay · Luxury</div>
+                <div class="stop-name">SBC Mendocino Inn &amp; Farm</div>
+              </div>
+            </div>
+            <div class="stop-desc">Luxury ocean-view rooms · Accessible bathrooms · Farm &amp; ocean views · Village dining steps away.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/SBC+Mendocino+Inn" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=Mendocino+village+dinner+restaurants+accessible" target="_blank">🔍 Dinner Options</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end day 6 -->
+
+      <!-- DAY 7 -->
+      <div class="day-section" id="day-7">
+        <div class="day-hero" style="background: linear-gradient(135deg, rgb(13, 61, 82), rgb(26, 95, 122));">
+          <img class="day-hero-img" src="./index_files/800px-Mendocino_Headlands_State_Park_2.jpg" alt="Mendocino Headlands" onerror="this.parentElement.style.background=&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;;this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
+            <div class="hero-date">Wednesday, July 15 · Final Day</div>
+            <div class="hero-title">Mendocino → Sacramento</div>
+            <div class="hero-sub">Anderson Valley · Lake Berryessa · SMF Airport</div>
+          </div>
+          <div class="hero-badge">✈️ Homeward</div>
+        </div>
+        <a class="route-btn" href="https://www.google.com/maps/dir/Mendocino,+CA/Boonville,+CA/Lake+Berryessa,+CA/Sacramento+Airport,+CA" target="_blank">
+          <div class="route-btn-left"><span class="route-icon">🗺️</span><div class="route-text"><div>Full Day Route</div><div class="route-label">Mendocino → Anderson Valley → Sacramento</div></div></div>
+          <span class="route-arrow">›</span>
+        </a>
+        <div class="tip-box"><strong>🎉 Farewell to the Coast</strong>One last look at the headlands before turning inland. The CA-128 drive through Anderson Valley is beautiful — redwoods, river, and vineyards. No rush today.</div>
+        <div class="section-label">Today's Stops</div>
+        <div class="stops-list">
+
+          <div class="stop-card featured">
+            <div class="stop-header">
+              <div class="stop-icon-wrap highlight">🌊</div>
+              <div class="stop-info">
+                <div class="stop-time">9:15 – 10:15 AM · ⭐ Do Not Miss</div>
+                <div class="stop-name">Mendocino Headlands – Farewell</div>
+              </div>
+            </div>
+            <div class="stop-desc">Best farewell coastal stop on the entire trip. Paved cliffside paths, benches, railings. Iconic final ocean views.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Paved Paths</span><span class="tag tag-star">⭐ Last Coast Views</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Mendocino+Headlands+State+Park" target="_blank">📍 Map</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap">🌿</div>
+              <div class="stop-info">
+                <div class="stop-time">11:45 AM – 1:00 PM</div>
+                <div class="stop-name">Boonville — Anderson Valley</div>
+              </div>
+            </div>
+            <div class="stop-desc">Casual lunch in Boonville. Flat-access cafés and patios. Light crowds and relaxed pace. Great final meal before the freeway.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Flat Access</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Boonville,+CA" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=restaurants+lunch+Boonville+California" target="_blank">🔍 Find Restaurants</a>
+            </div>
+          </div>
+
+          <div class="stop-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap">💧</div>
+              <div class="stop-info">
+                <div class="stop-time">2:15 – 2:45 PM</div>
+                <div class="stop-name">Lake Berryessa Pullout</div>
+              </div>
+            </div>
+            <div class="stop-desc">Drive-up viewpoints, flat parking, restrooms. Final stretch break before Sacramento.</div>
+            <div class="stop-tags"><span class="tag tag-access">♿ Drive-Up</span></div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Lake+Berryessa" target="_blank">📍 Map</a>
+              <a class="action-btn directions" href="https://www.google.com/maps/dir//Lake+Berryessa,+CA" target="_blank">↗ Directions</a>
+            </div>
+          </div>
+
+          <div class="stop-card hotel-card">
+            <div class="stop-header">
+              <div class="stop-icon-wrap hotel">✈️</div>
+              <div class="stop-info">
+                <div class="stop-time">Tonight's Stay — Near SMF</div>
+                <div class="stop-name">Hampton Inn Sacramento Airport</div>
+              </div>
+            </div>
+            <div class="stop-desc">Best accessible &amp; quiet option near SMF. Also: Courtyard or Aloft Sacramento Airport Natomas.</div>
+            <div class="stop-actions">
+              <a class="action-btn" href="https://www.google.com/maps/place/Hampton+Inn+Sacramento+Airport+Natomas" target="_blank">📍 Map</a>
+              <a class="action-btn search" href="https://www.google.com/search?q=restaurants+Natomas+Sacramento+near+airport" target="_blank">🔍 Dinner Nearby</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end day 7 -->
+
+    </div><!-- end screen-itinerary -->
+
+    <!-- OVERVIEW SCREEN -->
+    <div class="screen" id="screen-overview">
+      <div class="overview-screen">
+        <div class="overview-hero">
+          <h2>Pacific Coast Road Trip</h2>
+          <p>July 9–15, 2025 · Portland OR to Sacramento CA</p>
+          <div class="stats-row">
+            <div class="stat-pill"><b>7</b>Days</div>
+            <div class="stat-pill"><b>~800</b>Miles</div>
+            <div class="stat-pill"><b>♿</b>Accessible</div>
+          </div>
+        </div>
+        <div id="overview-days"></div>
+      </div>
+    </div>
+
+    <!-- TIPS SCREEN -->
+    <div class="screen" id="screen-tips">
+      <div class="tips-screen">
+
+        <div class="tip-card">
+          <h3>♿ Accessibility Notes</h3>
+          <ul>
+            <li>All stops rated Excellent accessibility — paved paths, drive-up viewpoints, or elevator access throughout</li>
+            <li>Restrooms available at every major stop</li>
+            <li>Always call hotels ahead to confirm ADA room availability</li>
+            <li>Beach sand areas are optional — all ocean views accessible from boardwalks or overlooks</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h3>🕐 Crowd Timing Tips</h3>
+          <ul>
+            <li>Ecola State Park &amp; Haystack Rock: arrive before 10 AM for best photos</li>
+            <li>Cannon Beach downtown gets busy after 11:30 AM in summer</li>
+            <li>Newport Bayfront: moderate crowds late afternoon — still fine</li>
+            <li>Bandon Beach viewpoints: stay near paved areas, lighter than downtown</li>
+            <li>Redwoods: afternoons are quieter than mornings</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h3>🌅 Best Sunset Spots</h3>
+          <ul>
+            <li><b>Day 2:</b> Seaside Promenade — watch from the boardwalk</li>
+            <li><b>Day 4:</b> Bandon Beach — sea stacks glow at golden hour</li>
+            <li><b>Day 6:</b> Mendocino Headlands — best sunset of the trip</li>
+            <li><b>Day 7:</b> Last look at Mendocino before heading inland</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h3>🚗 Driving Notes</h3>
+          <ul>
+            <li>All routes follow Hwy 101 south — one of the most scenic drives in the US</li>
+            <li>Day 7 turns inland via CA-128 through Anderson Valley — beautiful drive</li>
+            <li>Gas up in larger towns: Astoria, Newport, Florence, Crescent City</li>
+            <li>Cell service can be spotty — download offline maps before leaving</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h3>📱 Using This App Offline</h3>
+          <p>Add this page to your Home Screen for app-like access. On iPhone: tap Share → Add to Home Screen. On Android: tap menu → Add to Home Screen. All links open Google Maps or Google Search.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end main-content -->
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <div class="nav-btn active" id="nav-itinerary" onclick="showScreen(&#39;itinerary&#39;)">
+      <div class="nav-icon">🗓️</div>
+      <div class="nav-label">Itinerary</div>
+    </div>
+    <div class="nav-btn" id="nav-overview" onclick="showScreen(&#39;overview&#39;)">
+      <div class="nav-icon">🗺️</div>
+      <div class="nav-label">Overview</div>
+    </div>
+    <div class="nav-btn" id="nav-tips" onclick="showScreen(&#39;tips&#39;)">
+      <div class="nav-icon">💡</div>
+      <div class="nav-label">Tips</div>
+    </div>
+  </div>
+
+</div><!-- end app -->
+
+<script>
+const dayData = [
+  { date:'Jul 9', title:'Portland → Astoria', sub:'Ilani · Riverwalk · Astoria Column' },
+  { date:'Jul 10', title:'Cannon Beach & Seaside', sub:'Ecola · Haystack Rock · Promenade' },
+  { date:'Jul 11', title:'Garibaldi → Newport', sub:'Cape Meares · Sea Lions · Lighthouse' },
+  { date:'Jul 12', title:'Newport → Bandon', sub:'Heceta Head · Sea Lion Caves · Sea Stacks' },
+  { date:'Jul 13', title:'Bandon → Crescent City', sub:'Boardman Corridor · Redwoods' },
+  { date:'Jul 14', title:'Crescent City → Mendocino', sub:'Lady Bird Grove · Glass Beach · Headlands' },
+  { date:'Jul 15', title:'Mendocino → Sacramento', sub:'Anderson Valley · Lake Berryessa · SMF' },
+];
+
+let currentDay = 1;
+
+function showDay(n) {
+  currentDay = n;
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
+  document.getElementById('day-' + n).classList.add('active');
+  document.querySelectorAll('.day-pill')[n-1].classList.add('active');
+  document.getElementById('progress-info').textContent = 'Day ' + n + ' of 7';
+  document.getElementById('progress-fill').style.width = (n / 7 * 100) + '%';
+  document.querySelector('.main-content').scrollTop = 0;
+  // scroll pill into view
+  document.querySelectorAll('.day-pill')[n-1].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+}
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  document.getElementById('day-scroller').style.display = name === 'itinerary' ? 'block' : 'none';
+  document.querySelector('.main-content').scrollTop = 0;
+
+  if (name === 'overview') buildOverview();
+}
+
+function buildOverview() {
+  const container = document.getElementById('overview-days');
+  if (container.children.length > 0) return;
+  dayData.forEach((d, i) => {
+    const el = document.createElement('div');
+    el.className = 'overview-day-card';
+    el.innerHTML = `
+      <div class="day-num-badge"><span class="dn">Day</span><span class="dd">${i+1}</span></div>
+      <div class="odc-info">
+        <div class="odc-title">${d.title}</div>
+        <div class="odc-sub">${d.date} · ${d.sub}</div>
+      </div>
+      <span class="odc-arrow">›</span>`;
+    el.onclick = () => { showDay(i+1); showScreen('itinerary'); };
+    container.appendChild(el);
+  });
+}
+</script>
+
+
+</body></html>
