@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/daniel/Downloads/index_9.html -->
+<!-- saved from url=(0047)file:///C:/Users/daniel/Downloads/index_11.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -11,38 +11,20 @@
 <link href="./index_files/css2" rel="stylesheet">
 <style>
   :root {
-    --ocean: #1a5f7a;
-    --ocean-dark: #0d3d52;
-    --ocean-mid: #3d8fa8;
-    --ocean-light: #e8f4f8;
-    --sunset: #d4603a;
-    --sunset-light: #fdf0ea;
-    --forest: #2d5a3d;
-    --forest-light: #eaf3ee;
-    --sand: #f7f3ed;
-    --text: #1c1c1c;
-    --text-muted: #6b7280;
-    --border: rgba(0,0,0,0.08);
+    --ocean: #1a5f7a; --ocean-dark: #0d3d52; --ocean-mid: #3d8fa8; --ocean-light: #e8f4f8;
+    --sunset: #d4603a; --sunset-light: #fdf0ea; --forest: #2d5a3d; --forest-light: #eaf3ee;
+    --sand: #f7f3ed; --text: #1c1c1c; --text-muted: #6b7280; --border: rgba(0,0,0,0.08);
     --nav-height: 64px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; overflow: hidden; }
   body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--text); }
-
   .app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
 
-  /* TOP HEADER */
-  .app-header {
-    background: linear-gradient(135deg, var(--ocean-dark), var(--ocean));
-    color: white;
-    padding: 14px 16px 12px;
-    padding-top: calc(14px + env(safe-area-inset-top, 0px));
-    flex-shrink: 0;
-  }
+  .app-header { background: linear-gradient(135deg, var(--ocean-dark), var(--ocean)); color: white; padding: 14px 16px 12px; padding-top: calc(14px + env(safe-area-inset-top, 0px)); flex-shrink: 0; }
   .app-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; }
   .app-subtitle { font-size: 0.72rem; opacity: 0.75; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
 
-  /* DAY PILL SCROLLER */
   .day-scroller { background: white; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; flex-shrink: 0; }
   .day-scroller::-webkit-scrollbar { display: none; }
   .day-pills { display: flex; gap: 8px; padding: 10px 14px; min-width: max-content; }
@@ -52,156 +34,70 @@
   .day-pill.active .pill-day { opacity: 0.8; }
   .pill-label { font-size: 0.8rem; font-weight: 600; }
 
-  /* MAIN SCROLL */
   .main-content { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: calc(var(--nav-height) + 16px); }
 
-  /* DAY HERO */
   .day-hero { position: relative; height: 220px; overflow: hidden; background: linear-gradient(135deg, var(--ocean-dark), var(--ocean-mid)); }
   .day-hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .day-hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(13,61,82,0.92) 0%, rgba(13,61,82,0.3) 50%, transparent 100%);
-    padding: 16px;
-    display: flex; flex-direction: column; justify-content: flex-end;
-  }
+  .day-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,61,82,0.92) 0%, rgba(13,61,82,0.3) 50%, transparent 100%); padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; }
   .hero-date { font-size: 0.68rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
   .hero-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; font-weight: 600; line-height: 1.2; }
   .hero-sub { font-size: 0.78rem; color: rgba(255,255,255,0.8); margin-top: 4px; }
 
-  /* ROUTE BAR */
   .route-bar { margin: 12px 14px; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text); }
   .route-bar-left { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; }
   .route-bar-sub { font-size: 0.72rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: 1px; }
   .route-arrow { color: var(--ocean); font-size: 1.2rem; }
 
-  /* TIP BOX */
   .tip-box { margin: 0 14px 8px; background: #fff8e6; border-left: 3px solid #f59e0b; border-radius: 10px; padding: 10px 12px; font-size: 0.8rem; color: #78350f; line-height: 1.6; }
   .tip-box strong { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; color: #b45309; }
 
-  /* SECTION LABEL */
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); padding: 4px 14px 8px; }
 
-  /* STOP CARDS LIST */
   .stops-list { display: flex; flex-direction: column; gap: 10px; padding: 0 14px; }
 
-  .stop-card {
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-    height: 130px;
-    background: var(--ocean-dark);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-    transition: transform 0.15s;
-  }
+  .stop-card { border-radius: 16px; overflow: hidden; cursor: pointer; position: relative; height: 130px; background: var(--ocean-dark); box-shadow: 0 2px 12px rgba(0,0,0,0.12); transition: transform 0.15s; }
   .stop-card:active { transform: scale(0.97); }
-
-  .stop-card-bg {
-    position: absolute; inset: 0;
-    background-size: cover;
-    background-position: center;
-    width: 100%; height: 100%;
-  }
-  .stop-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, rgba(13,61,82,0.92) 0%, rgba(13,61,82,0.5) 60%, rgba(13,61,82,0.2) 100%);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  .stop-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; width: 100%; height: 100%; }
+  .stop-card-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(13,61,82,0.92) 0%, rgba(13,61,82,0.5) 60%, rgba(13,61,82,0.2) 100%); padding: 16px; display: flex; flex-direction: column; justify-content: center; }
   .stop-card-time { font-size: 0.68rem; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
   .stop-card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: white; font-weight: 600; line-height: 1.2; margin-bottom: 6px; }
   .stop-card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
   .stop-card-tag { font-size: 0.65rem; padding: 2px 7px; border-radius: 20px; background: rgba(255,255,255,0.18); color: white; font-weight: 500; }
   .stop-card-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.6); font-size: 1.4rem; }
 
-  /* ===== MODAL ===== */
-  .modal-backdrop {
-    position: fixed; inset: 0; z-index: 200;
-    display: flex; flex-direction: column;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
+  /* MODAL */
+  .modal-backdrop { position: fixed; inset: 0; z-index: 200; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; background: rgba(0,0,0,0.5); }
   .modal-backdrop.open { opacity: 1; pointer-events: all; }
-
-  .modal {
-    position: absolute; inset: 0;
-    background-size: cover;
-    background-position: center;
-    display: flex; flex-direction: column;
-    transform: translateY(100%);
-    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-  }
+  .modal { position: absolute; inset: 0; background-size: cover; background-position: center; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.32,0.72,0,1); }
   .modal-backdrop.open .modal { transform: translateY(0); }
-
-  .modal-bg-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(5,20,30,0.97) 0%, rgba(5,20,30,0.75) 40%, rgba(5,20,30,0.4) 70%, rgba(5,20,30,0.25) 100%);
-  }
-
-  .modal-drag-handle {
-    position: relative; z-index: 10;
-    width: 40px; height: 4px;
-    background: rgba(255,255,255,0.5);
-    border-radius: 2px;
-    margin: 14px auto 0;
-  }
-  .modal-close {
-    position: absolute; top: 16px; right: 16px;
-    top: calc(16px + env(safe-area-inset-top, 0px));
-    width: 36px; height: 36px;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(8px);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 18px;
-    cursor: pointer; z-index: 10;
-    border: 1px solid rgba(255,255,255,0.3);
-  }
-
-  .modal-content {
-    position: relative; z-index: 5;
-    margin-top: auto;
-    padding: 20px 20px 32px;
-    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
-    overflow-y: auto;
-    max-height: 65vh;
-  }
+  .modal-bg-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,20,30,0.97) 0%, rgba(5,20,30,0.75) 40%, rgba(5,20,30,0.4) 70%, rgba(5,20,30,0.25) 100%); }
+  .modal-drag-handle { position: relative; z-index: 10; width: 40px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 2px; margin: 14px auto 0; }
+  .modal-content { position: relative; z-index: 5; margin-top: auto; padding: 20px 20px 32px; padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; max-height: 65vh; }
   .modal-time { font-size: 0.72rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
   .modal-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; font-weight: 600; line-height: 1.2; margin-bottom: 10px; }
   .modal-desc { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 16px; }
-
   .modal-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
   .modal-tag { font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.15); color: white; font-weight: 500; border: 1px solid rgba(255,255,255,0.25); }
-
-  .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .modal-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 11px 18px; border-radius: 12px;
-    font-size: 0.82rem; font-weight: 600;
-    text-decoration: none; cursor: pointer; border: none;
-    transition: transform 0.1s;
-  }
+  .modal-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .modal-btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 16px; border-radius: 12px; font-size: 0.82rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: transform 0.1s; }
   .modal-btn:active { transform: scale(0.96); }
   .btn-map { background: white; color: var(--ocean); }
   .btn-dir { background: var(--sunset); color: white; }
   .btn-search { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
+  .btn-guide { background: #2d5a3d; color: white; }
+  .modal-swipe-hint { text-align: center; margin-top: 18px; font-size: 0.7rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
 
-  /* BOTTOM NAV */
   .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-height); background: white; border-top: 1px solid var(--border); display: flex; align-items: center; z-index: 100; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); padding-bottom: env(safe-area-inset-bottom, 0px); }
   .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; padding: 8px 0; }
   .nav-icon { font-size: 22px; line-height: 1; }
   .nav-label { font-size: 0.62rem; font-weight: 500; color: var(--text-muted); }
   .nav-btn.active .nav-label { color: var(--ocean); font-weight: 600; }
 
-  /* SCREENS */
   .screen { display: none; }
   .screen.active { display: block; }
   .day-section { display: none; }
   .day-section.active { display: block; }
 
-  /* OVERVIEW */
   .overview-screen { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
   .overview-hero { background: linear-gradient(135deg, var(--ocean-dark), var(--ocean-mid)); border-radius: 16px; padding: 20px; color: white; text-align: center; }
   .overview-hero h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 4px; }
@@ -222,7 +118,6 @@
 </head>
 <body>
 <div class="app">
-
   <div class="app-header">
     <div class="app-title">🌊 Pacific Coast Road Trip</div>
     <div class="app-subtitle">July 9–15, 2025 · Portland to Sacramento</div>
@@ -259,52 +154,34 @@
         </a>
         <p class="section-label">Tap a stop to explore</p>
         <div class="stops-list">
-          <div class="stop-card" onclick="openModal(&#39;Ilani Casino Resort&#39;,&#39;12:45 – 2:30 PM&#39;,&#39;Lunch, light gaming, or just relax and stretch. Large restrooms and seating throughout. Great first stop after leaving Portland.&#39;,&#39;https://g2y4tnt455-dot.github.io/roadtrip/day1-ilani.jpg&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d6080)&#39;,&#39;♿ Fully Accessible,🟢 Light Crowds,🍽️ Dining On-Site&#39;,&#39;https://www.google.com/maps/place/ilani&#39;,&#39;https://www.google.com/maps/dir/Portland,+OR/ilani+Casino+Resort&#39;,&#39;https://www.google.com/search?q=Ilani+Casino+Resort+dining&#39;)">
-            <div class="stop-card-bg" style="background-image:url(&#39;https://g2y4tnt455-dot.github.io/roadtrip/day1-ilani.jpg&#39;);background-color:#1a3d52"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">12:45 – 2:30 PM</div>
-              <div class="stop-card-name">Ilani Casino Resort</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ Accessible</span><span class="stop-card-tag">🍽️ Dining</span></div>
-            </div>
+          <div class="stop-card" onclick="openModal(&#39;Ilani Casino Resort&#39;,&#39;12:45 – 2:30 PM&#39;,&#39;Lunch, light gaming, or just relax and stretch. Large restrooms and seating throughout. Great first stop after leaving Portland.&#39;,&#39;images/day1-ilani.jpg&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d6080)&#39;,&#39;♿ Fully Accessible,🟢 Light Crowds,🍽️ Dining On-Site&#39;,&#39;https://www.google.com/maps/place/ilani&#39;,&#39;https://www.google.com/maps/dir/Portland,+OR/ilani+Casino+Resort&#39;,&#39;https://www.google.com/search?q=Ilani+Casino+Resort+dining&#39;,&#39;&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day1-ilani.jpg&#39;);background-color:#1a3d52"></div>
+            <div class="stop-card-overlay"><div class="stop-card-time">12:45 – 2:30 PM</div><div class="stop-card-name">Ilani Casino Resort</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Accessible</span><span class="stop-card-tag">🍽️ Dining</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-
-          <div class="stop-card" onclick="openModal(&#39;Astoria Riverwalk&#39;,&#39;4:00 – 5:30 PM&#39;,&#39;Flat paved waterfront with benches, cafés, and restrooms. Watch ships pass under the iconic Astoria-Megler Bridge. One of the most relaxing stops of Day 1.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Flat Paved Path,🌊 River Views&#39;,&#39;https://www.google.com/maps/place/Astoria+Riverwalk&#39;,&#39;https://www.google.com/maps/dir//Astoria+Riverwalk,+OR&#39;,&#39;https://www.google.com/search?q=Astoria+Riverwalk+Oregon&#39;)">
+          <div class="stop-card" onclick="openModal(&#39;Astoria Riverwalk&#39;,&#39;4:00 – 5:30 PM&#39;,&#39;Flat paved waterfront with benches, cafés, and restrooms. Watch ships pass under the iconic Astoria-Megler Bridge. One of the most relaxing stops of Day 1.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Flat Paved Path,🌊 River Views&#39;,&#39;https://www.google.com/maps/place/Astoria+Riverwalk&#39;,&#39;https://www.google.com/maps/dir//Astoria+Riverwalk,+OR&#39;,&#39;https://www.google.com/search?q=Astoria+Riverwalk+Oregon&#39;,&#39;https://www.travelastoria.com/accessibility&#39;)">
             <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a6080)"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">4:00 – 5:30 PM</div>
-              <div class="stop-card-name">Astoria Riverwalk</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Path</span><span class="stop-card-tag">🌊 River Views</span></div>
-            </div>
+            <div class="stop-card-overlay"><div class="stop-card-time">4:00 – 5:30 PM</div><div class="stop-card-name">Astoria Riverwalk</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Path</span><span class="stop-card-tag">🌊 River Views</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-
-          <div class="stop-card" onclick="openModal(&#39;Astoria Column&#39;,&#39;5:45 – 6:15 PM&#39;,&#39;Drive-up viewpoint — no stairs needed for great views. Perfect late-day lighting for photos of the Columbia River and Pacific coast stretching to the horizon.&#39;,&#39;https://g2y4tnt455-dot.github.io/roadtrip/day1-column.jpg&#39;,&#39;linear-gradient(135deg,#2d3a52,#3d5a80)&#39;,&#39;♿ Drive-Up Views,📸 Best at Sunset&#39;,&#39;https://www.google.com/maps/place/Astoria+Column&#39;,&#39;https://www.google.com/maps/dir//Astoria+Column,+OR&#39;,&#39;https://www.google.com/search?q=Astoria+Column+Oregon&#39;)">
-            <div class="stop-card-bg" style="background-image:url(&#39;https://g2y4tnt455-dot.github.io/roadtrip/day1-column.jpg&#39;);background-color:#2d3a52"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">5:45 – 6:15 PM</div>
-              <div class="stop-card-name">Astoria Column</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ Drive-Up</span><span class="stop-card-tag">📸 Great Views</span></div>
-            </div>
+          <div class="stop-card" onclick="openModal(&#39;Astoria Column&#39;,&#39;5:45 – 6:15 PM&#39;,&#39;Drive-up viewpoint — no stairs needed for great views. Perfect late-day lighting for photos of the Columbia River and Pacific coast.&#39;,&#39;images/day1-column.jpg&#39;,&#39;linear-gradient(135deg,#2d3a52,#3d5a80)&#39;,&#39;♿ Drive-Up Views,📸 Best at Sunset&#39;,&#39;https://www.google.com/maps/place/Astoria+Column&#39;,&#39;https://www.google.com/maps/dir//Astoria+Column,+OR&#39;,&#39;https://www.google.com/search?q=Astoria+Column+Oregon&#39;,&#39;&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day1-column.jpg&#39;);background-color:#2d3a52"></div>
+            <div class="stop-card-overlay"><div class="stop-card-time">5:45 – 6:15 PM</div><div class="stop-card-name">Astoria Column</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Drive-Up</span><span class="stop-card-tag">📸 Great Views</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-
-          <div class="stop-card" onclick="openModal(&#39;Dinner in Astoria&#39;,&#39;6:30 – 8:00 PM&#39;,&#39;Bridgewater Bistro offers river views and ADA access. Or try casual seafood near the Riverwalk. A perfect end to Day 1 watching the sun go down over the Columbia River.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3520)&#39;,&#39;♿ ADA Access,🌊 River Views,🍽️ Seafood&#39;,&#39;https://www.google.com/maps/place/Bridgewater+Bistro+Astoria&#39;,&#39;https://www.google.com/maps/dir//Bridgewater+Bistro,+Astoria,+OR&#39;,&#39;https://www.google.com/search?q=accessible+restaurants+Astoria+Oregon&#39;)">
+          <div class="stop-card" onclick="openModal(&#39;Dinner in Astoria&#39;,&#39;6:30 – 8:00 PM&#39;,&#39;Bridgewater Bistro offers river views and ADA access. Or try casual seafood near the Riverwalk.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3520)&#39;,&#39;♿ ADA Access,🌊 River Views,🍽️ Seafood&#39;,&#39;https://www.google.com/maps/place/Bridgewater+Bistro+Astoria&#39;,&#39;https://www.google.com/maps/dir//Bridgewater+Bistro,+Astoria,+OR&#39;,&#39;https://www.google.com/search?q=accessible+restaurants+Astoria+Oregon&#39;,&#39;&#39;)">
             <div class="stop-card-bg" style="background:linear-gradient(135deg,#3d2010,#6b3520)"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">6:30 – 8:00 PM · Dinner</div>
-              <div class="stop-card-name">Bridgewater Bistro</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ ADA</span><span class="stop-card-tag">🍽️ River Views</span></div>
-            </div>
+            <div class="stop-card-overlay"><div class="stop-card-time">6:30 – 8:00 PM · Dinner</div><div class="stop-card-name">Bridgewater Bistro</div><div class="stop-card-tags"><span class="stop-card-tag">♿ ADA</span><span class="stop-card-tag">🍽️ River Views</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
         </div>
-      </div><!-- end day 1 -->
+      </div>
 
       <!-- DAY 2 -->
       <div class="day-section" id="day-2">
-        <div class="day-hero" style="background:linear-gradient(135deg,#0d3d52,#1a5f7a)">
-          <div class="day-hero-overlay" style="background:none;padding:16px">
+        <div class="day-hero">
+          <img class="day-hero-img" src="file:///C:/Users/daniel/Downloads/images/day2-haystack.jpg" alt="Haystack Rock" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
             <div class="hero-date">Friday, July 10</div>
             <div class="hero-title">Cannon Beach &amp; Seaside</div>
             <div class="hero-sub">Ecola · Haystack Rock · Seaside Promenade</div>
@@ -317,52 +194,34 @@
         <div class="tip-box"><strong>⭐ Timing Tip</strong>Arrive at Ecola before 10 AM. Hit Haystack Rock before 11:30 AM to beat the crowds.</div>
         <p class="section-label">Tap a stop to explore</p>
         <div class="stops-list">
-          <div class="stop-card" onclick="openModal(&#39;Ecola State Park Overlook&#39;,&#39;9:45 – 10:30 AM · ⭐ Do Not Miss&#39;,&#39;Drive-up viewpoints with benches and guardrails. The iconic postcard view of Cannon Beach and Haystack Rock from above. Best light and fewest crowds in the morning.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d6040)&#39;,&#39;♿ Drive-Up,⭐ Must See,🌅 Best Morning Light&#39;,&#39;https://www.google.com/maps/place/Ecola+State+Park&#39;,&#39;https://www.google.com/maps/dir//Ecola+State+Park,+OR&#39;,&#39;https://www.google.com/search?q=Ecola+State+Park+overlook+accessibility&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d2b,#2d6040)"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">9:45 – 10:30 AM · ⭐ Do Not Miss</div>
-              <div class="stop-card-name">Ecola State Park Overlook</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ Drive-Up</span><span class="stop-card-tag">⭐ Must See</span></div>
-            </div>
+          <div class="stop-card" onclick="openModal(&#39;Ecola State Park Overlook&#39;,&#39;9:45 – 10:30 AM · ⭐ Do Not Miss&#39;,&#39;Drive-up viewpoints with benches. The iconic postcard view of Cannon Beach and Haystack Rock from above.&#39;,&#39;images/day2-ecola.jpg&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d6040)&#39;,&#39;♿ Drive-Up,⭐ Must See,🌅 Best Morning Light&#39;,&#39;https://www.google.com/maps/place/Ecola+State+Park&#39;,&#39;https://www.google.com/maps/dir//Ecola+State+Park,+OR&#39;,&#39;https://www.google.com/search?q=Ecola+State+Park+overlook+accessibility&#39;,&#39;https://www.oregon.gov/oprd/parks/pages/ecola.aspx&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day2-ecola.jpg&#39;);background-color:#1a3d2b"></div>
+            <div class="stop-card-overlay"><div class="stop-card-time">9:45 – 10:30 AM · ⭐ Do Not Miss</div><div class="stop-card-name">Ecola State Park Overlook</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Drive-Up</span><span class="stop-card-tag">⭐ Must See</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-
-          <div class="stop-card" onclick="openModal(&#39;Haystack Rock&#39;,&#39;10:45 AM – 12:30 PM&#39;,&#39;Paved promenade viewpoints with flat paths and benches. The most iconic sea stack on the Oregon coast. Downtown galleries and shops are compact and flat — easy to explore. Arrive before 11:30 AM to beat crowds.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;,&#39;♿ Paved Promenade,🕐 Arrive Before 11:30&#39;,&#39;https://www.google.com/maps/place/Haystack+Rock,+Cannon+Beach&#39;,&#39;https://www.google.com/maps/dir//Haystack+Rock,+Cannon+Beach,+OR&#39;,&#39;https://www.google.com/search?q=Cannon+Beach+Oregon+shops+accessible&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a5f7a)"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">10:45 AM – 12:30 PM</div>
-              <div class="stop-card-name">Haystack Rock</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ Paved</span><span class="stop-card-tag">🪨 Iconic</span></div>
-            </div>
+          <div class="stop-card" onclick="openModal(&#39;Haystack Rock&#39;,&#39;10:45 AM – 12:30 PM&#39;,&#39;Paved promenade viewpoints with flat paths and benches. Most iconic sea stack on the Oregon coast. Arrive before 11:30 AM to beat crowds.&#39;,&#39;images/day2-haystack.jpg&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;,&#39;♿ Paved Promenade,🕐 Arrive Before 11:30&#39;,&#39;https://www.google.com/maps/place/Haystack+Rock,+Cannon+Beach&#39;,&#39;https://www.google.com/maps/dir//Haystack+Rock,+Cannon+Beach,+OR&#39;,&#39;https://www.google.com/search?q=Cannon+Beach+Oregon+shops+accessible&#39;,&#39;https://www.cannonbeach.org/accessibility&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day2-haystack.jpg&#39;);background-color:#0d3d52"></div>
+            <div class="stop-card-overlay"><div class="stop-card-time">10:45 AM – 12:30 PM</div><div class="stop-card-name">Haystack Rock</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Paved</span><span class="stop-card-tag">🪨 Iconic</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-
-          <div class="stop-card" onclick="openModal(&#39;Lunch — Cannon Beach&#39;,&#39;12:30 – 1:45 PM&#39;,&#39;Wayfarer Restaurant offers oceanfront dining with level entry. Driftwood Restaurant &amp; Lounge has great views and wide aisles. Ask host for lower-traffic seating.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3520)&#39;,&#39;♿ Level Entry,🌊 Ocean Views&#39;,&#39;https://www.google.com/maps/place/Wayfarer+Restaurant+Cannon+Beach&#39;,&#39;https://www.google.com/maps/dir//Wayfarer+Restaurant,+Cannon+Beach,+OR&#39;,&#39;https://www.google.com/search?q=Wayfarer+Restaurant+Cannon+Beach&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#3d2010,#6b3520)"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">12:30 – 1:45 PM · Lunch</div>
-              <div class="stop-card-name">Wayfarer Restaurant</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ Level Entry</span><span class="stop-card-tag">🌊 Ocean Views</span></div>
-            </div>
+          <div class="stop-card" onclick="openModal(&#39;Lunch — Cannon Beach&#39;,&#39;12:30 – 1:45 PM&#39;,&#39;Wayfarer Restaurant: oceanfront, level entry. Driftwood Restaurant &amp; Lounge: great views, wide aisles. Ask for lower-traffic seating.&#39;,&#39;images/day2-lunch.jpg&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3520)&#39;,&#39;♿ Level Entry,🌊 Ocean Views&#39;,&#39;https://www.google.com/maps/place/Wayfarer+Restaurant+Cannon+Beach&#39;,&#39;https://www.google.com/maps/dir//Wayfarer+Restaurant,+Cannon+Beach,+OR&#39;,&#39;https://www.google.com/search?q=Wayfarer+Restaurant+Cannon+Beach&#39;,&#39;&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day2-lunch.jpg&#39;);background-color:#3d2010"></div>
+            <div class="stop-card-overlay"><div class="stop-card-time">12:30 – 1:45 PM · Lunch</div><div class="stop-card-name">Wayfarer Restaurant</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Level Entry</span><span class="stop-card-tag">🌊 Ocean Views</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-
-          <div class="stop-card" onclick="openModal(&#39;Seaside Promenade&#39;,&#39;4:00 – 7:30 PM&#39;,&#39;Long flat oceanfront boardwalk with benches every few minutes. Watch the sunset without touching sand. Crowds moderate then relaxed by evening. Perfect way to end the day.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#2d6080)&#39;,&#39;♿ Flat Boardwalk,🌅 Sunset Views&#39;,&#39;https://www.google.com/maps/place/Seaside+Promenade,+OR&#39;,&#39;https://www.google.com/maps/dir//Seaside+Promenade,+OR&#39;,&#39;https://www.google.com/search?q=Seaside+Oregon+promenade+dining&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#2d6080)"></div>
-            <div class="stop-card-overlay">
-              <div class="stop-card-time">4:00 – 7:30 PM</div>
-              <div class="stop-card-name">Seaside Promenade</div>
-              <div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Boardwalk</span><span class="stop-card-tag">🌅 Sunset</span></div>
-            </div>
+          <div class="stop-card" onclick="openModal(&#39;Seaside Promenade&#39;,&#39;4:00 – 7:30 PM&#39;,&#39;Long flat oceanfront boardwalk with benches every few minutes. Watch sunset without touching sand.&#39;,&#39;images/day2-seaside.jpg&#39;,&#39;linear-gradient(135deg,#0d3d52,#2d6080)&#39;,&#39;♿ Flat Boardwalk,🌅 Sunset Views&#39;,&#39;https://www.google.com/maps/place/Seaside+Promenade,+OR&#39;,&#39;https://www.google.com/maps/dir//Seaside+Promenade,+OR&#39;,&#39;https://www.google.com/search?q=Seaside+Oregon+promenade+dining&#39;,&#39;https://www.seasideor.com/accessibility&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day2-seaside.jpg&#39;);background-color:#0d3d52"></div>
+            <div class="stop-card-overlay"><div class="stop-card-time">4:00 – 7:30 PM</div><div class="stop-card-name">Seaside Promenade</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Boardwalk</span><span class="stop-card-tag">🌅 Sunset</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
         </div>
-      </div><!-- end day 2 -->
+      </div>
 
       <!-- DAY 3 -->
       <div class="day-section" id="day-3">
-        <div class="day-hero" style="background:linear-gradient(135deg,#0d3d52,#1a5f7a)">
-          <div class="day-hero-overlay" style="background:none;padding:16px">
+        <div class="day-hero">
+          <img class="day-hero-img" src="file:///C:/Users/daniel/Downloads/images/day3-yaquina.jpg" alt="Yaquina Head Lighthouse" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
             <div class="hero-date">Saturday, July 11</div>
             <div class="hero-title">Garibaldi → Newport</div>
             <div class="hero-sub">Cape Meares · Cape Lookout · Sea Lions · Yaquina</div>
@@ -374,38 +233,39 @@
         </a>
         <p class="section-label">Tap a stop to explore</p>
         <div class="stops-list">
-          <div class="stop-card" onclick="openModal(&#39;Cape Meares Lighthouse&#39;,&#39;10:30 – 11:30 AM&#39;,&#39;Paved overlook with lighthouse and coast views. Great for photos with benches available. Light crowds in the morning make this a peaceful start to the day.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d6070)&#39;,&#39;♿ Paved Overlook,🟢 Light Crowds&#39;,&#39;https://www.google.com/maps/place/Cape+Meares+Lighthouse&#39;,&#39;https://www.google.com/maps/dir//Cape+Meares+Lighthouse,+OR&#39;,&#39;https://www.google.com/search?q=Cape+Meares+Lighthouse+Oregon+visit&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d52,#2d6070)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Cape Meares Lighthouse&#39;,&#39;10:30 – 11:30 AM&#39;,&#39;Paved overlook with lighthouse and coast views. Light crowds in the morning make this a peaceful start.&#39;,&#39;images/day3-capemeares.jpg&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d6070)&#39;,&#39;♿ Paved Overlook,🟢 Light Crowds&#39;,&#39;https://www.google.com/maps/place/Cape+Meares+Lighthouse&#39;,&#39;https://www.google.com/maps/dir//Cape+Meares+Lighthouse,+OR&#39;,&#39;https://www.google.com/search?q=Cape+Meares+Lighthouse+Oregon+visit&#39;,&#39;https://www.oregon.gov/oprd/parks/pages/capemeares.aspx&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day3-capemeares.jpg&#39;);background-color:#1a3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">10:30 – 11:30 AM</div><div class="stop-card-name">Cape Meares Lighthouse</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Paved Overlook</span><span class="stop-card-tag">🟢 Light Crowds</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Cape Lookout State Park&#39;,&#39;11:45 AM – 1:30 PM&#39;,&#39;Cliffside viewpoints with benches and picnic tables. Short paved paths for accessible views of the Pacific. Moderate crowds — still very peaceful compared to the touristy spots.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d5a3d)&#39;,&#39;♿ Paved Paths,🌊 Cliffside Views&#39;,&#39;https://www.google.com/maps/place/Cape+Lookout+State+Park&#39;,&#39;https://www.google.com/maps/dir//Cape+Lookout+State+Park,+OR&#39;,&#39;https://www.google.com/search?q=Cape+Lookout+State+Park+Oregon&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d2b,#2d5a3d)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Cape Lookout State Park&#39;,&#39;11:45 AM – 1:30 PM&#39;,&#39;Cliffside viewpoints with benches and picnic tables. Short paved paths for accessible views of the Pacific.&#39;,&#39;images/day3-caplookout.jpg&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d5a3d)&#39;,&#39;♿ Paved Paths,🌊 Cliffside Views&#39;,&#39;https://www.google.com/maps/place/Cape+Lookout+State+Park&#39;,&#39;https://www.google.com/maps/dir//Cape+Lookout+State+Park,+OR&#39;,&#39;https://www.google.com/search?q=Cape+Lookout+State+Park+Oregon&#39;,&#39;https://www.oregon.gov/oprd/parks/pages/capelookout.aspx&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day3-caplookout.jpg&#39;);background-color:#1a3d2b"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">11:45 AM – 1:30 PM</div><div class="stop-card-name">Cape Lookout State Park</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Paved Paths</span><span class="stop-card-tag">🌊 Cliffside</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Newport Bayfront &amp; Sea Lions&#39;,&#39;4:45 – 6:15 PM&#39;,&#39;Sea lions, shops, and cafés along a flat paved boardwalk with benches. One of the most entertaining stops on the entire trip — the sea lions are loud and hilarious!&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;,&#39;♿ Flat Paved,🦭 Sea Lions,🍽️ Cafés&#39;,&#39;https://www.google.com/maps/place/Newport+Bay+Front&#39;,&#39;https://www.google.com/maps/dir//Newport+Bay+Front,+Newport,+OR&#39;,&#39;https://www.google.com/search?q=Newport+Oregon+bayfront+sea+lions&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a5f7a)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Newport Bayfront &amp; Sea Lions&#39;,&#39;4:45 – 6:15 PM&#39;,&#39;Sea lions, shops, and cafés along a flat paved boardwalk. One of the most entertaining stops on the entire trip!&#39;,&#39;images/day3-sealions.jpg&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a5f7a)&#39;,&#39;♿ Flat Paved,🦭 Sea Lions,🍽️ Cafés&#39;,&#39;https://www.google.com/maps/place/Newport+Bay+Front&#39;,&#39;https://www.google.com/maps/dir//Newport+Bay+Front,+Newport,+OR&#39;,&#39;https://www.google.com/search?q=Newport+Oregon+bayfront+sea+lions&#39;,&#39;https://www.accessiblenewport.com&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day3-sealions.jpg&#39;);background-color:#0d3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">4:45 – 6:15 PM</div><div class="stop-card-name">Newport Bayfront &amp; Sea Lions</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Paved</span><span class="stop-card-tag">🦭 Sea Lions</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Yaquina Head Lighthouse&#39;,&#39;6:15 – 7:30 PM&#39;,&#39;Paved ramp to viewpoint with accessible restrooms. Beautiful late afternoon light makes this one of the best photography stops on the Oregon coast.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#2d3a52,#3d5a80)&#39;,&#39;♿ Paved Ramp,📸 Great Light&#39;,&#39;https://www.google.com/maps/place/Yaquina+Head+Lighthouse&#39;,&#39;https://www.google.com/maps/dir//Yaquina+Head+Lighthouse,+Newport,+OR&#39;,&#39;https://www.google.com/search?q=Yaquina+Head+Lighthouse+Oregon&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#2d3a52,#3d5a80)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Yaquina Head Lighthouse&#39;,&#39;6:15 – 7:30 PM&#39;,&#39;Paved ramp to viewpoint with accessible restrooms. Beautiful late afternoon light for photos.&#39;,&#39;images/day3-yaquina.jpg&#39;,&#39;linear-gradient(135deg,#2d3a52,#3d5a80)&#39;,&#39;♿ Paved Ramp,📸 Great Light&#39;,&#39;https://www.google.com/maps/place/Yaquina+Head+Lighthouse&#39;,&#39;https://www.google.com/maps/dir//Yaquina+Head+Lighthouse,+Newport,+OR&#39;,&#39;https://www.google.com/search?q=Yaquina+Head+Lighthouse+Oregon&#39;,&#39;https://www.blm.gov/visit/yaquina-head-outstanding-natural-area&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day3-yaquina.jpg&#39;);background-color:#2d3a52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">6:15 – 7:30 PM</div><div class="stop-card-name">Yaquina Head Lighthouse</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Paved Ramp</span><span class="stop-card-tag">📸 Great Light</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Travelodge Newport — Tonight&#39;,&#39;Stay&#39;,&#39;ADA rooms available. Flat streets and easy access. Nearby dining options within walking distance.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#0d2a3d)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ ADA Rooms&#39;,&#39;https://www.google.com/maps/place/Travelodge+Newport+OR&#39;,&#39;https://www.google.com/maps/dir//Travelodge+Newport,+OR&#39;,&#39;https://www.google.com/search?q=restaurants+near+Travelodge+Newport+Oregon&#39;)">
+          <div class="stop-card" onclick="openModal(&#39;Travelodge Newport — Tonight&#39;,&#39;Stay&#39;,&#39;ADA rooms available. Flat streets and easy access. Nearby dining options within walking distance.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#0d2a3d)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ ADA Rooms&#39;,&#39;https://www.google.com/maps/place/Travelodge+Newport+OR&#39;,&#39;https://www.google.com/maps/dir//Travelodge+Newport,+OR&#39;,&#39;https://www.google.com/search?q=restaurants+near+Travelodge+Newport+Oregon&#39;,&#39;&#39;)">
             <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d52,#0d2a3d)"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">Tonight's Stay</div><div class="stop-card-name">Travelodge Newport</div><div class="stop-card-tags"><span class="stop-card-tag">🏨 Hotel</span><span class="stop-card-tag">♿ ADA Rooms</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
         </div>
-      </div><!-- end day 3 -->
+      </div>
 
       <!-- DAY 4 -->
       <div class="day-section" id="day-4">
-        <div class="day-hero" style="background:linear-gradient(135deg,#0d3d52,#1a5f7a)">
-          <div class="day-hero-overlay" style="background:none;padding:16px">
+        <div class="day-hero">
+          <img class="day-hero-img" src="file:///C:/Users/daniel/Downloads/images/day4-heceta.jpg" alt="Heceta Head Lighthouse" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
             <div class="hero-date">Sunday, July 12</div>
             <div class="hero-title">Newport → Bandon</div>
             <div class="hero-sub">Heceta Head · Sea Lion Caves · Bandon Sea Stacks</div>
@@ -417,38 +277,39 @@
         </a>
         <p class="section-label">Tap a stop to explore</p>
         <div class="stops-list">
-          <div class="stop-card" onclick="openModal(&#39;Heceta Head Lighthouse&#39;,&#39;10:30 – 11:45 AM&#39;,&#39;Minimal walking required for spectacular views of Oregon\&#39;s most photographed lighthouse. Go earlier for lighter crowds. The setting — lighthouse against cliffs and sea — is breathtaking.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Minimal Walking,📸 Most Photographed&#39;,&#39;https://www.google.com/maps/place/Heceta+Head+Lighthouse&#39;,&#39;https://www.google.com/maps/dir//Heceta+Head+Lighthouse,+OR&#39;,&#39;https://www.google.com/search?q=Heceta+Head+Lighthouse+Oregon+visit&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a6080)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Heceta Head Lighthouse&#39;,&#39;10:30 – 11:45 AM&#39;,&#39;Minimal walking for spectacular views of Oregon\&#39;s most photographed lighthouse. Go earlier for lighter crowds.&#39;,&#39;images/day4-heceta.jpg&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Minimal Walking,📸 Most Photographed&#39;,&#39;https://www.google.com/maps/place/Heceta+Head+Lighthouse&#39;,&#39;https://www.google.com/maps/dir//Heceta+Head+Lighthouse,+OR&#39;,&#39;https://www.google.com/search?q=Heceta+Head+Lighthouse+Oregon+visit&#39;,&#39;https://www.fs.usda.gov/recarea/siuslaw/recarea/?recid=42560&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day4-heceta.jpg&#39;);background-color:#0d3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">10:30 – 11:45 AM</div><div class="stop-card-name">Heceta Head Lighthouse</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Easy Walk</span><span class="stop-card-tag">📸 Iconic</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Lunch — Old Town Florence&#39;,&#39;12:15 – 1:30 PM&#39;,&#39;Flat streets with many accessible cafés in Old Town Florence. Charming waterfront area along the Siuslaw River. Great place to stretch and enjoy lunch before the afternoon stops.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#3d2010,#5a3020)&#39;,&#39;♿ Flat Streets,🍽️ Many Options&#39;,&#39;https://www.google.com/maps/place/Old+Town+Florence,+OR&#39;,&#39;https://www.google.com/maps/dir//Old+Town+Florence,+OR&#39;,&#39;https://www.google.com/search?q=accessible+restaurants+Old+Town+Florence+Oregon&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#3d2010,#5a3020)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Lunch — Old Town Florence&#39;,&#39;12:15 – 1:30 PM&#39;,&#39;Flat streets with many accessible cafés along the Siuslaw River waterfront.&#39;,&#39;images/day4-florence.jpg&#39;,&#39;linear-gradient(135deg,#3d2010,#5a3020)&#39;,&#39;♿ Flat Streets,🍽️ Many Options&#39;,&#39;https://www.google.com/maps/place/Old+Town+Florence,+OR&#39;,&#39;https://www.google.com/maps/dir//Old+Town+Florence,+OR&#39;,&#39;https://www.google.com/search?q=accessible+restaurants+Old+Town+Florence+Oregon&#39;,&#39;&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day4-florence.jpg&#39;);background-color:#3d2010"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">12:15 – 1:30 PM · Lunch</div><div class="stop-card-name">Old Town Florence</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Streets</span><span class="stop-card-tag">🍽️ Many Options</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Sea Lion Caves&#39;,&#39;1:45 – 2:45 PM · Optional&#39;,&#39;The world\&#39;s largest sea cave — fully accessible via elevator. The cave is massive and the sea lions are incredible. Skip if conserving energy, but worth it if you\&#39;re feeling up to it!&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d5a70)&#39;,&#39;♿ Elevator Access,🎟️ Paid Admission,🦭 Sea Cave&#39;,&#39;https://www.google.com/maps/place/Sea+Lion+Caves,+Florence,+OR&#39;,&#39;https://www.google.com/maps/dir//Sea+Lion+Caves,+Florence,+OR&#39;,&#39;https://www.google.com/search?q=Sea+Lion+Caves+Oregon+tickets+hours&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d52,#2d5a70)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Sea Lion Caves&#39;,&#39;1:45 – 2:45 PM · Optional&#39;,&#39;World\&#39;s largest sea cave — fully accessible via elevator. The cave is massive and the sea lions are incredible.&#39;,&#39;images/day4-sealcaves.jpg&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d5a70)&#39;,&#39;♿ Elevator Access,🎟️ Paid Admission,🦭 Sea Cave&#39;,&#39;https://www.google.com/maps/place/Sea+Lion+Caves,+Florence,+OR&#39;,&#39;https://www.google.com/maps/dir//Sea+Lion+Caves,+Florence,+OR&#39;,&#39;https://www.google.com/search?q=Sea+Lion+Caves+Oregon+tickets+hours&#39;,&#39;https://sealioncaves.com/plan-your-visit&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day4-sealcaves.jpg&#39;);background-color:#1a3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">1:45 – 2:45 PM · Optional</div><div class="stop-card-name">Sea Lion Caves</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Elevator</span><span class="stop-card-tag">🦭 Sea Cave</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Bandon Beach Sea Stacks&#39;,&#39;4:30 – 6:30 PM · ⭐ Highlight&#39;,&#39;Face Rock, Table Rock and more — stunning sea stacks from paved viewpoints. Stay near the paved areas for the best experience. Pre-sunset lighting turns the rocks golden — spectacular.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3010)&#39;,&#39;♿ Paved Viewpoints,⭐ Highlight,🌅 Pre-Sunset&#39;,&#39;https://www.google.com/maps/place/Face+Rock+State+Scenic+Viewpoint&#39;,&#39;https://www.google.com/maps/dir//Face+Rock+State+Scenic+Viewpoint,+Bandon,+OR&#39;,&#39;https://www.google.com/search?q=Bandon+Beach+sea+stacks+viewpoints&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#3d2010,#6b3010)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Bandon Beach Sea Stacks&#39;,&#39;4:30 – 6:30 PM · ⭐ Highlight&#39;,&#39;Face Rock, Table Rock and more from paved viewpoints. Pre-sunset lighting turns the rocks golden — spectacular.&#39;,&#39;images/day4-bandon.jpg&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3010)&#39;,&#39;♿ Paved Viewpoints,⭐ Highlight,🌅 Pre-Sunset&#39;,&#39;https://www.google.com/maps/place/Face+Rock+State+Scenic+Viewpoint&#39;,&#39;https://www.google.com/maps/dir//Face+Rock+State+Scenic+Viewpoint,+Bandon,+OR&#39;,&#39;https://www.google.com/search?q=Bandon+Beach+sea+stacks+viewpoints&#39;,&#39;https://www.oregon.gov/oprd/parks/pages/facerock.aspx&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day4-bandon.jpg&#39;);background-color:#3d2010"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">4:30 – 6:30 PM · ⭐ Highlight</div><div class="stop-card-name">Bandon Beach Sea Stacks</div><div class="stop-card-tags"><span class="stop-card-tag">⭐ Highlight</span><span class="stop-card-tag">🌅 Pre-Sunset</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Bandon Inn — Tonight&#39;,&#39;Stay&#39;,&#39;Elevator access · ADA rooms available · Harbor and river views · Flat walk to Old Town dining. One of the most convenient and comfortable hotels on the trip.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#0d2a3d)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ Elevator,🌊 Harbor Views&#39;,&#39;https://www.google.com/maps/place/Bandon+Inn,+Bandon,+OR&#39;,&#39;https://www.google.com/maps/dir//Bandon+Inn,+Bandon,+OR&#39;,&#39;https://www.google.com/search?q=Old+Town+Bandon+Oregon+dinner+restaurants&#39;)">
+          <div class="stop-card" onclick="openModal(&#39;Bandon Inn — Tonight&#39;,&#39;Stay&#39;,&#39;Elevator access · ADA rooms · Harbor views · Flat walk to Old Town dining.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#0d2a3d)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ Elevator,🌊 Harbor Views&#39;,&#39;https://www.google.com/maps/place/Bandon+Inn,+Bandon,+OR&#39;,&#39;https://www.google.com/maps/dir//Bandon+Inn,+Bandon,+OR&#39;,&#39;https://www.google.com/search?q=Old+Town+Bandon+Oregon+dinner+restaurants&#39;,&#39;&#39;)">
             <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d52,#0d2a3d)"></div>
-            <div class="stop-card-overlay"><div class="stop-card-time">Tonight's Stay</div><div class="stop-card-name">Bandon Inn</div><div class="stop-card-tags"><span class="stop-card-tag">🏨 Hotel</span><span class="stop-card-tag">♿ Elevator</span><span class="stop-card-tag">🌊 Harbor Views</span></div></div>
+            <div class="stop-card-overlay"><div class="stop-card-time">Tonight's Stay</div><div class="stop-card-name">Bandon Inn</div><div class="stop-card-tags"><span class="stop-card-tag">🏨 Hotel</span><span class="stop-card-tag">♿ Elevator</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
         </div>
-      </div><!-- end day 4 -->
+      </div>
 
       <!-- DAY 5 -->
       <div class="day-section" id="day-5">
-        <div class="day-hero" style="background:linear-gradient(135deg,#1a3d2b,#2d5a3d)">
-          <div class="day-hero-overlay" style="background:none;padding:16px">
+        <div class="day-hero">
+          <img class="day-hero-img" src="file:///C:/Users/daniel/Downloads/images/day5-boardman.jpg" alt="Boardman Corridor" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
             <div class="hero-date">Monday, July 13</div>
             <div class="hero-title">Bandon → Crescent City</div>
             <div class="hero-sub">Boardman Corridor · Big Tree Wayside · Redwoods</div>
@@ -460,33 +321,34 @@
         </a>
         <p class="section-label">Tap a stop to explore</p>
         <div class="stops-list">
-          <div class="stop-card" onclick="openModal(&#39;Samuel H. Boardman Corridor&#39;,&#39;10:30 AM – 12:00 PM · ⭐ Highlight&#39;,&#39;Multiple drive-up pullouts for dramatic cliff and ocean views. One of the most spectacular stretches of the entire Oregon coast. Take your time — every pullout has something incredible.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Drive-Up Pullouts,⭐ Must See&#39;,&#39;https://www.google.com/maps/place/Samuel+H.+Boardman+State+Scenic+Corridor&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=Samuel+Boardman+Corridor+best+viewpoints&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a6080)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Samuel H. Boardman Corridor&#39;,&#39;10:30 AM – 12:00 PM · ⭐ Highlight&#39;,&#39;Multiple drive-up pullouts for dramatic cliff and ocean views. One of the most spectacular stretches of the entire Oregon coast. Take your time — every pullout has something incredible.&#39;,&#39;images/day5-boardman.jpg&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Drive-Up Pullouts,⭐ Must See&#39;,&#39;https://www.google.com/maps/place/Samuel+H.+Boardman+State+Scenic+Corridor&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=Samuel+Boardman+Corridor+best+viewpoints&#39;,&#39;https://www.earthtrekkers.com/samuel-h-boardman-state-scenic-corridor/&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day5-boardman.jpg&#39;);background-color:#0d3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">10:30 AM – 12:00 PM · ⭐ Highlight</div><div class="stop-card-name">Samuel H. Boardman Corridor</div><div class="stop-card-tags"><span class="stop-card-tag">⭐ Must See</span><span class="stop-card-tag">♿ Drive-Up</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Big Tree Wayside&#39;,&#39;12:00 – 1:00 PM&#39;,&#39;Iconic coastal redwoods with flat paved access and benches. A great stretch stop and photo opportunity before crossing into California. The trees are enormous.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d5a3d)&#39;,&#39;♿ Flat Paved,🌲 Coastal Redwoods&#39;,&#39;https://www.google.com/maps/place/Big+Tree+Wayside,+OR&#39;,&#39;https://www.google.com/maps/dir//Big+Tree+Wayside,+OR&#39;,&#39;https://www.google.com/search?q=Big+Tree+Wayside+Oregon&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d2b,#2d5a3d)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Big Tree Wayside&#39;,&#39;12:00 – 1:00 PM&#39;,&#39;Iconic coastal redwoods with flat paved access and benches. Great stretch stop before crossing into California.&#39;,&#39;images/day5-bigtree.jpg&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d5a3d)&#39;,&#39;♿ Flat Paved,🌲 Coastal Redwoods&#39;,&#39;https://www.google.com/maps/place/Big+Tree+Wayside,+OR&#39;,&#39;https://www.google.com/maps/dir//Big+Tree+Wayside,+OR&#39;,&#39;https://www.google.com/search?q=Big+Tree+Wayside+Oregon&#39;,&#39;&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day5-bigtree.jpg&#39;);background-color:#1a3d2b"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">12:00 – 1:00 PM</div><div class="stop-card-name">Big Tree Wayside</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Paved</span><span class="stop-card-tag">🌲 Redwoods</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Redwood National Park Trails&#39;,&#39;3:30 – 5:00 PM · Optional&#39;,&#39;Paved and firm-surface ADA trails near the visitor center. Benches along the way. Walking among the world\&#39;s tallest trees is an experience you\&#39;ll never forget.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d2b,#3d6040)&#39;,&#39;♿ ADA Trails,🌲 World\&#39;s Tallest Trees,🟢 Quiet Afternoons&#39;,&#39;https://www.google.com/maps/place/Redwood+National+and+State+Parks&#39;,&#39;https://www.google.com/maps/dir//Redwood+National+Park+Visitor+Center&#39;,&#39;https://www.google.com/search?q=Redwood+National+Park+accessible+ADA+trails&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d2b,#3d6040)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Redwood National Park Trails&#39;,&#39;3:30 – 5:00 PM · Optional&#39;,&#39;Paved and firm-surface ADA trails near the visitor center. Walking among the world\&#39;s tallest trees is unforgettable.&#39;,&#39;images/day5-redwoods.jpg&#39;,&#39;linear-gradient(135deg,#1a3d2b,#3d6040)&#39;,&#39;♿ ADA Trails,🌲 World\&#39;s Tallest Trees&#39;,&#39;https://www.google.com/maps/place/Redwood+National+and+State+Parks&#39;,&#39;https://www.google.com/maps/dir//Redwood+National+Park+Visitor+Center&#39;,&#39;https://www.google.com/search?q=Redwood+National+Park+accessible+ADA+trails&#39;,&#39;https://www.nps.gov/redw/planyourvisit/accessibility.htm&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day5-redwoods.jpg&#39;);background-color:#1a3d2b"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">3:30 – 5:00 PM · Optional</div><div class="stop-card-name">Redwood National Park</div><div class="stop-card-tags"><span class="stop-card-tag">♿ ADA Trails</span><span class="stop-card-tag">🌲 Tallest Trees</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Ocean View Inn &amp; Suites — Tonight&#39;,&#39;Stay&#39;,&#39;Crescent City · Ocean views · ADA-friendly rooms (call ahead to request) · Flat parking · Wheelchair access to lobby and common spaces. Great base for sunset views.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a5060)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ ADA Rooms,🌊 Ocean Views&#39;,&#39;https://www.google.com/maps/place/Ocean+View+Inn+Suites+Crescent+City&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=restaurants+Crescent+City+CA+dinner&#39;)">
+          <div class="stop-card" onclick="openModal(&#39;Ocean View Inn &amp; Suites — Tonight&#39;,&#39;Stay&#39;,&#39;Crescent City · Ocean views · ADA-friendly rooms (call ahead) · Flat parking · Great base for sunset views.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a5060)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ ADA Rooms,🌊 Ocean Views&#39;,&#39;https://www.google.com/maps/place/Ocean+View+Inn+Suites+Crescent+City&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=restaurants+Crescent+City+CA+dinner&#39;,&#39;&#39;)">
             <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a5060)"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">Tonight's Stay</div><div class="stop-card-name">Ocean View Inn &amp; Suites</div><div class="stop-card-tags"><span class="stop-card-tag">🏨 Hotel</span><span class="stop-card-tag">🌊 Ocean Views</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
         </div>
-      </div><!-- end day 5 -->
+      </div>
 
       <!-- DAY 6 -->
       <div class="day-section" id="day-6">
-        <div class="day-hero" style="background:linear-gradient(135deg,#1a3d2b,#1a5f7a)">
-          <div class="day-hero-overlay" style="background:none;padding:16px">
+        <div class="day-hero">
+          <img class="day-hero-img" src="file:///C:/Users/daniel/Downloads/images/day6-mendocino.jpg" alt="Mendocino Headlands" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
             <div class="hero-date">Tuesday, July 14</div>
             <div class="hero-title">Crescent City → Mendocino</div>
             <div class="hero-sub">Lady Bird Grove · Glass Beach · Mendocino Headlands</div>
@@ -498,33 +360,34 @@
         </a>
         <p class="section-label">Tap a stop to explore</p>
         <div class="stops-list">
-          <div class="stop-card" onclick="openModal(&#39;Lady Bird Johnson Grove&#39;,&#39;10:30 AM – 12:00 PM · ⭐ Highlight&#39;,&#39;Paved trail through towering coastal redwoods dedicated to Lady Bird Johnson. Benches throughout for photos and rest. Lighter crowds in the morning make this a peaceful and magical walk.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d6040)&#39;,&#39;♿ Paved Trail,⭐ Must See,🌲 Coastal Redwoods&#39;,&#39;https://www.google.com/maps/place/Lady+Bird+Johnson+Grove,+Orick,+CA&#39;,&#39;https://www.google.com/maps/dir//Lady+Bird+Johnson+Grove,+Orick,+CA&#39;,&#39;https://www.google.com/search?q=Lady+Bird+Johnson+Grove+accessible+trail&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d2b,#2d6040)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Lady Bird Johnson Grove&#39;,&#39;10:30 AM – 12:00 PM · ⭐ Highlight&#39;,&#39;Paved trail through towering coastal redwoods. Benches throughout. Lighter crowds in the morning.&#39;,&#39;images/day6-ladybird.jpg&#39;,&#39;linear-gradient(135deg,#1a3d2b,#2d6040)&#39;,&#39;♿ Paved Trail,⭐ Must See,🌲 Coastal Redwoods&#39;,&#39;https://www.google.com/maps/place/Lady+Bird+Johnson+Grove,+Orick,+CA&#39;,&#39;https://www.google.com/maps/dir//Lady+Bird+Johnson+Grove,+Orick,+CA&#39;,&#39;https://www.google.com/search?q=Lady+Bird+Johnson+Grove+accessible+trail&#39;,&#39;https://www.nps.gov/redw/planyourvisit/ladybirdjohnsongrove.htm&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day6-ladybird.jpg&#39;);background-color:#1a3d2b"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">10:30 AM – 12:00 PM · ⭐ Highlight</div><div class="stop-card-name">Lady Bird Johnson Grove</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Paved Trail</span><span class="stop-card-tag">⭐ Must See</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Glass Beach — Fort Bragg&#39;,&#39;12:30 – 1:30 PM&#39;,&#39;Colorful sea glass beach with paved viewpoints for photos. Decades of wave-tumbled glass creates a uniquely colorful shoreline. Great for photos and lighter crowds in early afternoon.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a4a5a,#2d7080)&#39;,&#39;♿ Paved Viewpoints,💎 Sea Glass Beach&#39;,&#39;https://www.google.com/maps/place/Glass+Beach,+Fort+Bragg,+CA&#39;,&#39;https://www.google.com/maps/dir//Glass+Beach,+Fort+Bragg,+CA&#39;,&#39;https://www.google.com/search?q=Glass+Beach+Fort+Bragg+California&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a4a5a,#2d7080)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Glass Beach — Fort Bragg&#39;,&#39;12:30 – 1:30 PM&#39;,&#39;Colorful sea glass beach with paved viewpoints. Decades of wave-tumbled glass creates a uniquely colorful shoreline.&#39;,&#39;images/day6-glassbeach.jpg&#39;,&#39;linear-gradient(135deg,#1a4a5a,#2d7080)&#39;,&#39;♿ Paved Viewpoints,💎 Sea Glass Beach&#39;,&#39;https://www.google.com/maps/place/Glass+Beach,+Fort+Bragg,+CA&#39;,&#39;https://www.google.com/maps/dir//Glass+Beach,+Fort+Bragg,+CA&#39;,&#39;https://www.google.com/search?q=Glass+Beach+Fort+Bragg+California&#39;,&#39;https://www.visitfortbragg.com/glass-beach&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day6-glassbeach.jpg&#39;);background-color:#1a4a5a"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">12:30 – 1:30 PM</div><div class="stop-card-name">Glass Beach — Fort Bragg</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Paved</span><span class="stop-card-tag">💎 Sea Glass</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Mendocino Headlands&#39;,&#39;4:00 – 5:30 PM · ⭐ Highlight&#39;,&#39;Paved cliffside paths with benches and jaw-dropping Pacific views. One of the most scenic spots on the entire trip. Take your time — this is the crown jewel of the California coast section.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Paved Cliffside Paths,⭐ Highlight,🌅 Sunset Prep&#39;,&#39;https://www.google.com/maps/place/Mendocino+Headlands+State+Park&#39;,&#39;https://www.google.com/maps/dir//Mendocino+Headlands+State+Park&#39;,&#39;https://www.google.com/search?q=Mendocino+Headlands+State+Park&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a6080)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Mendocino Headlands&#39;,&#39;4:00 – 5:30 PM · ⭐ Highlight&#39;,&#39;Paved cliffside paths with benches and jaw-dropping Pacific views. Crown jewel of the California coast section.&#39;,&#39;images/day6-mendocino.jpg&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Paved Cliffside Paths,⭐ Highlight,🌅 Sunset Prep&#39;,&#39;https://www.google.com/maps/place/Mendocino+Headlands+State+Park&#39;,&#39;https://www.google.com/maps/dir//Mendocino+Headlands+State+Park&#39;,&#39;https://www.google.com/search?q=Mendocino+Headlands+State+Park&#39;,&#39;https://www.parks.ca.gov/?page_id=431&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day6-mendocino.jpg&#39;);background-color:#0d3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">4:00 – 5:30 PM · ⭐ Highlight</div><div class="stop-card-name">Mendocino Headlands</div><div class="stop-card-tags"><span class="stop-card-tag">⭐ Highlight</span><span class="stop-card-tag">🌅 Sunset Prep</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;SBC Mendocino Inn &amp; Farm — Tonight&#39;,&#39;Luxury Stay&#39;,&#39;Luxury ocean-view rooms with accessible bathrooms. Flat parking and easy lobby access. Farm and ocean views from the property. Village dining just steps away. The best hotel of the trip.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3520)&#39;,&#39;✨ Luxury Stay,♿ Accessible,🌊 Ocean Views,🍽️ Village Dining&#39;,&#39;https://www.google.com/maps/place/SBC+Mendocino+Inn&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=Mendocino+village+dinner+restaurants+accessible&#39;)">
+          <div class="stop-card" onclick="openModal(&#39;SBC Mendocino Inn &amp; Farm — Tonight&#39;,&#39;Luxury Stay&#39;,&#39;Luxury ocean-view rooms with accessible bathrooms. Farm and ocean views. Village dining steps away.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#3d2010,#6b3520)&#39;,&#39;✨ Luxury Stay,♿ Accessible,🌊 Ocean Views&#39;,&#39;https://www.google.com/maps/place/SBC+Mendocino+Inn&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=Mendocino+village+dinner+restaurants+accessible&#39;,&#39;&#39;)">
             <div class="stop-card-bg" style="background:linear-gradient(135deg,#3d2010,#6b3520)"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">Tonight's Stay · Luxury</div><div class="stop-card-name">SBC Mendocino Inn &amp; Farm</div><div class="stop-card-tags"><span class="stop-card-tag">✨ Luxury</span><span class="stop-card-tag">🌊 Ocean Views</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
         </div>
-      </div><!-- end day 6 -->
+      </div>
 
       <!-- DAY 7 -->
       <div class="day-section" id="day-7">
-        <div class="day-hero" style="background:linear-gradient(135deg,#0d3d52,#1a5f7a)">
-          <div class="day-hero-overlay" style="background:none;padding:16px">
+        <div class="day-hero">
+          <img class="day-hero-img" src="file:///C:/Users/daniel/Downloads/images/day7-headlands.jpg" alt="Mendocino Headlands" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+          <div class="day-hero-overlay">
             <div class="hero-date">Wednesday, July 15 · Final Day</div>
             <div class="hero-title">Mendocino → Sacramento</div>
             <div class="hero-sub">Anderson Valley · Lake Berryessa · SMF Airport</div>
@@ -534,31 +397,31 @@
           <div class="route-bar-left">🗺️ <div>Full Day Route<span class="route-bar-sub">Mendocino → Anderson Valley → Sacramento</span></div></div>
           <span class="route-arrow">›</span>
         </a>
-        <div class="tip-box"><strong>🎉 Final Day</strong>One last look at the headlands before heading inland. CA-128 through Anderson Valley is beautiful — redwoods, river, vineyards. No rush today.</div>
+        <div class="tip-box"><strong>🎉 Final Day</strong>One last look at the headlands before heading inland. CA-128 through Anderson Valley is beautiful — redwoods, river, vineyards.</div>
         <p class="section-label">Tap a stop to explore</p>
         <div class="stops-list">
-          <div class="stop-card" onclick="openModal(&#39;Mendocino Headlands — Farewell&#39;,&#39;9:15 – 10:15 AM · ⭐ Do Not Miss&#39;,&#39;Best farewell coastal stop on the entire trip. Paved cliffside paths, benches, and railings. Iconic final ocean views before turning inland. Take it all in — this is the last time you\&#39;ll see the Pacific on this trip.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Paved Paths,⭐ Last Coast Views&#39;,&#39;https://www.google.com/maps/place/Mendocino+Headlands+State+Park&#39;,&#39;https://www.google.com/maps/dir//Mendocino+Headlands+State+Park&#39;,&#39;&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#0d3d52,#1a6080)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Mendocino Headlands — Farewell&#39;,&#39;9:15 – 10:15 AM · ⭐ Do Not Miss&#39;,&#39;Best farewell coastal stop on the trip. Paved cliffside paths, benches, railings. Iconic final ocean views.&#39;,&#39;images/day7-headlands.jpg&#39;,&#39;linear-gradient(135deg,#0d3d52,#1a6080)&#39;,&#39;♿ Paved Paths,⭐ Last Coast Views&#39;,&#39;https://www.google.com/maps/place/Mendocino+Headlands+State+Park&#39;,&#39;https://www.google.com/maps/dir//Mendocino+Headlands+State+Park&#39;,&#39;&#39;,&#39;https://www.parks.ca.gov/?page_id=431&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day7-headlands.jpg&#39;);background-color:#0d3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">9:15 – 10:15 AM · ⭐ Do Not Miss</div><div class="stop-card-name">Mendocino Headlands — Farewell</div><div class="stop-card-tags"><span class="stop-card-tag">⭐ Last Coast Views</span><span class="stop-card-tag">♿ Paved</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Boonville — Anderson Valley&#39;,&#39;11:45 AM – 1:00 PM&#39;,&#39;Casual lunch in Boonville. Flat-access cafés and patios. Light crowds and relaxed pace. The CA-128 drive here is stunning — redwoods giving way to river valley and vineyards.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#2d3a10,#4a5a20)&#39;,&#39;♿ Flat Access,🍽️ Relaxed Lunch,🌿 Valley Views&#39;,&#39;https://www.google.com/maps/place/Boonville,+CA&#39;,&#39;https://www.google.com/maps/dir//Boonville,+CA&#39;,&#39;https://www.google.com/search?q=restaurants+Boonville+California&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#2d3a10,#4a5a20)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Boonville — Anderson Valley&#39;,&#39;11:45 AM – 1:00 PM&#39;,&#39;Casual lunch in Boonville. Flat-access cafés and patios. The CA-128 drive here is stunning — redwoods, river, vineyards.&#39;,&#39;images/day7-boonville.jpg&#39;,&#39;linear-gradient(135deg,#2d3a10,#4a5a20)&#39;,&#39;♿ Flat Access,🍽️ Relaxed Lunch,🌿 Valley Views&#39;,&#39;https://www.google.com/maps/place/Boonville,+CA&#39;,&#39;https://www.google.com/maps/dir//Boonville,+CA&#39;,&#39;https://www.google.com/search?q=restaurants+Boonville+California&#39;,&#39;&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day7-boonville.jpg&#39;);background-color:#2d3a10"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">11:45 AM – 1:00 PM</div><div class="stop-card-name">Boonville — Anderson Valley</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Flat Access</span><span class="stop-card-tag">🍽️ Lunch</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Lake Berryessa Scenic Pullout&#39;,&#39;2:15 – 2:45 PM&#39;,&#39;Drive-up viewpoints with flat parking and restrooms nearby. A short and beautiful stretch break before the final leg to Sacramento. The lake is stunning set against the rolling hills.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d5a70)&#39;,&#39;♿ Drive-Up,💧 Lake Views&#39;,&#39;https://www.google.com/maps/place/Lake+Berryessa&#39;,&#39;https://www.google.com/maps/dir//Lake+Berryessa,+CA&#39;,&#39;&#39;)">
-            <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d52,#2d5a70)"></div>
+          <div class="stop-card" onclick="openModal(&#39;Lake Berryessa Scenic Pullout&#39;,&#39;2:15 – 2:45 PM&#39;,&#39;Drive-up viewpoints with flat parking and restrooms. Beautiful stretch break before Sacramento.&#39;,&#39;images/day7-berryessa.jpg&#39;,&#39;linear-gradient(135deg,#1a3d52,#2d5a70)&#39;,&#39;♿ Drive-Up,💧 Lake Views&#39;,&#39;https://www.google.com/maps/place/Lake+Berryessa&#39;,&#39;https://www.google.com/maps/dir//Lake+Berryessa,+CA&#39;,&#39;&#39;,&#39;&#39;)">
+            <div class="stop-card-bg" style="background-image:url(&#39;images/day7-berryessa.jpg&#39;);background-color:#1a3d52"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">2:15 – 2:45 PM</div><div class="stop-card-name">Lake Berryessa Pullout</div><div class="stop-card-tags"><span class="stop-card-tag">♿ Drive-Up</span><span class="stop-card-tag">💧 Lake Views</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
-          <div class="stop-card" onclick="openModal(&#39;Hampton Inn Sacramento Airport — Tonight&#39;,&#39;Stay&#39;,&#39;Best overall accessible and quiet option near SMF. Also consider Courtyard Sacramento Airport Natomas or Aloft Sacramento Airport Natomas. Easy airport access in the morning.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#0d2a3d)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ Accessible,✈️ Near SMF&#39;,&#39;https://www.google.com/maps/place/Hampton+Inn+Sacramento+Airport+Natomas&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=restaurants+Natomas+Sacramento+near+airport&#39;)">
+          <div class="stop-card" onclick="openModal(&#39;Hampton Inn Sacramento Airport — Tonight&#39;,&#39;Stay&#39;,&#39;Best accessible &amp; quiet option near SMF. Also: Courtyard or Aloft Sacramento Airport Natomas.&#39;,&#39;&#39;,&#39;linear-gradient(135deg,#1a3d52,#0d2a3d)&#39;,&#39;🏨 Tonight\&#39;s Stay,♿ Accessible,✈️ Near SMF&#39;,&#39;https://www.google.com/maps/place/Hampton+Inn+Sacramento+Airport+Natomas&#39;,&#39;&#39;,&#39;https://www.google.com/search?q=restaurants+Natomas+Sacramento+near+airport&#39;,&#39;&#39;)">
             <div class="stop-card-bg" style="background:linear-gradient(135deg,#1a3d52,#0d2a3d)"></div>
             <div class="stop-card-overlay"><div class="stop-card-time">Tonight's Stay · Near SMF</div><div class="stop-card-name">Hampton Inn Sacramento Airport</div><div class="stop-card-tags"><span class="stop-card-tag">🏨 Hotel</span><span class="stop-card-tag">✈️ Near SMF</span></div></div>
             <div class="stop-card-arrow">›</div>
           </div>
         </div>
-      </div><!-- end day 7 -->
+      </div>
 
     </div><!-- end screen-itinerary -->
 
@@ -584,6 +447,7 @@
         <div style="background:white;border-radius:14px;border:1px solid var(--border);padding:14px;"><h3 style="font-size:0.9rem;margin-bottom:8px;">♿ Accessibility</h3><ul style="font-size:0.82rem;color:var(--text-muted);line-height:1.8;padding-left:16px;"><li>All stops have paved paths, drive-up viewpoints, or elevator access</li><li>Restrooms at every major stop</li><li>Call hotels ahead to confirm ADA room availability</li><li>All ocean views accessible from boardwalks or overlooks</li></ul></div>
         <div style="background:white;border-radius:14px;border:1px solid var(--border);padding:14px;"><h3 style="font-size:0.9rem;margin-bottom:8px;">🕐 Crowd Timing</h3><ul style="font-size:0.82rem;color:var(--text-muted);line-height:1.8;padding-left:16px;"><li>Ecola &amp; Haystack Rock: arrive before 10 AM</li><li>Cannon Beach gets busy after 11:30 AM</li><li>Redwoods: afternoons are quieter</li><li>Bandon viewpoints: lighter than downtown</li></ul></div>
         <div style="background:white;border-radius:14px;border:1px solid var(--border);padding:14px;"><h3 style="font-size:0.9rem;margin-bottom:8px;">🌅 Best Sunsets</h3><ul style="font-size:0.82rem;color:var(--text-muted);line-height:1.8;padding-left:16px;"><li>Day 2: Seaside Promenade boardwalk</li><li>Day 4: Bandon Beach — sea stacks glow at golden hour</li><li>Day 6: Mendocino Headlands — best of the trip</li></ul></div>
+        <div style="background:white;border-radius:14px;border:1px solid var(--border);padding:14px;"><h3 style="font-size:0.9rem;margin-bottom:8px;">🔗 Helpful Guides</h3><ul style="font-size:0.82rem;line-height:1.8;padding-left:16px;"><li><a href="https://www.earthtrekkers.com/samuel-h-boardman-state-scenic-corridor/" target="_blank" style="color:var(--ocean);">Samuel H. Boardman Corridor Guide</a></li><li><a href="https://www.nps.gov/redw/planyourvisit/accessibility.htm" target="_blank" style="color:var(--ocean);">Redwood NP Accessibility Guide</a></li><li><a href="https://www.nps.gov/redw/planyourvisit/ladybirdjohnsongrove.htm" target="_blank" style="color:var(--ocean);">Lady Bird Johnson Grove Guide</a></li><li><a href="https://sealioncaves.com/plan-your-visit" target="_blank" style="color:var(--ocean);">Sea Lion Caves Plan Your Visit</a></li><li><a href="https://www.blm.gov/visit/yaquina-head-outstanding-natural-area" target="_blank" style="color:var(--ocean);">Yaquina Head Lighthouse Info</a></li></ul></div>
         <div style="background:white;border-radius:14px;border:1px solid var(--border);padding:14px;"><h3 style="font-size:0.9rem;margin-bottom:8px;">📱 Install as App</h3><p style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;">iPhone: tap Share → Add to Home Screen<br>Android: tap menu → Add to Home Screen<br>Runs fullscreen with no browser bar!</p></div>
       </div>
     </div>
@@ -601,6 +465,7 @@
         <div class="modal-desc" id="modal-desc"></div>
         <div class="modal-tags" id="modal-tags"></div>
         <div class="modal-actions" id="modal-actions"></div>
+        <div class="modal-swipe-hint">SWIPE DOWN TO CLOSE</div>
       </div>
     </div>
   </div>
@@ -609,12 +474,13 @@
   <div class="bottom-nav">
     <div class="nav-btn active" id="nav-itinerary" onclick="showScreen(&#39;itinerary&#39;)"><div class="nav-icon">🗓️</div><div class="nav-label">Itinerary</div></div>
     <div class="nav-btn" id="nav-overview" onclick="showScreen(&#39;overview&#39;)"><div class="nav-icon">🗺️</div><div class="nav-label">Overview</div></div>
-    <div class="nav-btn" id="nav-tips" onclick="showScreen(&#39;tips&#39;)"><div class="nav-icon">💡</div><div class="nav-label">Tips</div></div>
+    <div class="nav-btn" id="nav-tips" onclick="showScreen(&#39;tips&#39;)"><div class="nav-icon">💡</div><div class="nav-label">Tips &amp; Links</div></div>
   </div>
 
 </div>
 
 <script>
+const BASE = 'https://g2y4tnt455-dot.github.io/roadtrip/';
 const dayData = [
   {date:'Jul 9', title:'Portland → Astoria', sub:'Ilani · Riverwalk · Column'},
   {date:'Jul 10', title:'Cannon Beach & Seaside', sub:'Ecola · Haystack Rock · Promenade'},
@@ -634,37 +500,35 @@ function showDay(n) {
   document.querySelector('.main-content').scrollTop = 0;
 }
 
-function openModal(name, time, desc, imgUrl, fallbackGradient, tagsStr, mapUrl, dirUrl, searchUrl) {
-  const modal = document.getElementById('modal');
+function openModal(name, time, desc, imgPath, fallback, tagsStr, mapUrl, dirUrl, searchUrl, guideUrl) {
   const inner = document.getElementById('modal-inner');
+  inner.style.transition = 'none';
+  inner.style.transform = '';
 
   document.getElementById('modal-name').textContent = name;
   document.getElementById('modal-time').textContent = time;
   document.getElementById('modal-desc').textContent = desc;
 
-  // Background
-  if (imgUrl) {
-    inner.style.backgroundImage = `url('${imgUrl}')`;
+  if (imgPath) {
+    inner.style.backgroundImage = `url('${BASE}${imgPath}')`;
     inner.style.backgroundSize = 'cover';
     inner.style.backgroundPosition = 'center';
     inner.style.background = '';
   } else {
     inner.style.backgroundImage = 'none';
-    inner.style.background = fallbackGradient;
+    inner.style.background = fallback;
   }
 
-  // Tags
-  const tagsEl = document.getElementById('modal-tags');
-  tagsEl.innerHTML = tagsStr.split(',').map(t => `<span class="modal-tag">${t.trim()}</span>`).join('');
+  document.getElementById('modal-tags').innerHTML = tagsStr.split(',').map(t => `<span class="modal-tag">${t.trim()}</span>`).join('');
 
-  // Buttons
-  const actionsEl = document.getElementById('modal-actions');
-  actionsEl.innerHTML = '';
-  if (mapUrl) actionsEl.innerHTML += `<a class="modal-btn btn-map" href="${mapUrl}" target="_blank">📍 Map</a>`;
-  if (dirUrl) actionsEl.innerHTML += `<a class="modal-btn btn-dir" href="${dirUrl}" target="_blank">↗ Directions</a>`;
-  if (searchUrl) actionsEl.innerHTML += `<a class="modal-btn btn-search" href="${searchUrl}" target="_blank">🔍 More Info</a>`;
+  let actions = '';
+  if (mapUrl) actions += `<a class="modal-btn btn-map" href="${mapUrl}" target="_blank">📍 Map</a>`;
+  if (dirUrl) actions += `<a class="modal-btn btn-dir" href="${dirUrl}" target="_blank">↗ Directions</a>`;
+  if (searchUrl) actions += `<a class="modal-btn btn-search" href="${searchUrl}" target="_blank">🔍 Info</a>`;
+  if (guideUrl) actions += `<a class="modal-btn btn-guide" href="${guideUrl}" target="_blank">📖 Guide</a>`;
+  document.getElementById('modal-actions').innerHTML = actions;
 
-  modal.classList.add('open');
+  document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
@@ -683,34 +547,25 @@ function closeModal() {
 (function() {
   let startY = 0, startX = 0, dragging = false;
   const inner = document.getElementById('modal-inner');
-
   inner.addEventListener('touchstart', e => {
     startY = e.touches[0].clientY;
     startX = e.touches[0].clientX;
     dragging = true;
     inner.style.transition = 'none';
-  }, {passive: true});
-
+  }, {passive:true});
   inner.addEventListener('touchmove', e => {
     if (!dragging) return;
     const dy = e.touches[0].clientY - startY;
     const dx = e.touches[0].clientX - startX;
-    if (dy > 0 && Math.abs(dy) > Math.abs(dx)) {
-      inner.style.transform = `translateY(${dy}px)`;
-    }
-  }, {passive: true});
-
+    if (dy > 0 && Math.abs(dy) > Math.abs(dx)) inner.style.transform = `translateY(${dy}px)`;
+  }, {passive:true});
   inner.addEventListener('touchend', e => {
     if (!dragging) return;
     dragging = false;
     const dy = e.changedTouches[0].clientY - startY;
-    if (dy > 80) {
-      closeModal();
-    } else {
-      inner.style.transition = 'transform 0.25s ease';
-      inner.style.transform = 'translateY(0)';
-    }
-  }, {passive: true});
+    if (dy > 80) { closeModal(); }
+    else { inner.style.transition = 'transform 0.25s ease'; inner.style.transform = 'translateY(0)'; }
+  }, {passive:true});
 })();
 
 function showScreen(name) {
