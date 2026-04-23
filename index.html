@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/daniel/Downloads/index_2.html -->
+<!-- saved from url=(0046)file:///C:/Users/daniel/Downloads/index_9.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -140,6 +140,13 @@
     background: linear-gradient(to top, rgba(5,20,30,0.97) 0%, rgba(5,20,30,0.75) 40%, rgba(5,20,30,0.4) 70%, rgba(5,20,30,0.25) 100%);
   }
 
+  .modal-drag-handle {
+    position: relative; z-index: 10;
+    width: 40px; height: 4px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 2px;
+    margin: 14px auto 0;
+  }
   .modal-close {
     position: absolute; top: 16px; right: 16px;
     top: calc(16px + env(safe-area-inset-top, 0px));
@@ -584,10 +591,10 @@
   </div><!-- end main-content -->
 
   <!-- MODAL -->
-  <div class="modal-backdrop" id="modal" onclick="handleBackdropClick(event)">
+  <div class="modal-backdrop" id="modal">
     <div class="modal" id="modal-inner">
       <div class="modal-bg-overlay"></div>
-      <div class="modal-close" onclick="closeModal()">✕</div>
+      <div class="modal-drag-handle"></div>
       <div class="modal-content">
         <div class="modal-time" id="modal-time"></div>
         <div class="modal-name" id="modal-name"></div>
@@ -662,13 +669,49 @@ function openModal(name, time, desc, imgUrl, fallbackGradient, tagsStr, mapUrl, 
 }
 
 function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
+  const inner = document.getElementById('modal-inner');
+  inner.style.transition = 'transform 0.3s cubic-bezier(0.32,0.72,0,1)';
+  inner.style.transform = 'translateY(100%)';
+  setTimeout(() => {
+    document.getElementById('modal').classList.remove('open');
+    inner.style.transform = '';
+    document.body.style.overflow = '';
+  }, 300);
 }
 
-function handleBackdropClick(e) {
-  if (e.target === document.getElementById('modal')) closeModal();
-}
+// Swipe down to close
+(function() {
+  let startY = 0, startX = 0, dragging = false;
+  const inner = document.getElementById('modal-inner');
+
+  inner.addEventListener('touchstart', e => {
+    startY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
+    dragging = true;
+    inner.style.transition = 'none';
+  }, {passive: true});
+
+  inner.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const dy = e.touches[0].clientY - startY;
+    const dx = e.touches[0].clientX - startX;
+    if (dy > 0 && Math.abs(dy) > Math.abs(dx)) {
+      inner.style.transform = `translateY(${dy}px)`;
+    }
+  }, {passive: true});
+
+  inner.addEventListener('touchend', e => {
+    if (!dragging) return;
+    dragging = false;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (dy > 80) {
+      closeModal();
+    } else {
+      inner.style.transition = 'transform 0.25s ease';
+      inner.style.transform = 'translateY(0)';
+    }
+  }, {passive: true});
+})();
 
 function showScreen(name) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
