@@ -123,7 +123,7 @@
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     animation: splashLifecycle 8s ease forwards;
-    animation-delay: 0s;
+    animation-delay: 0.3s;
     opacity: 0;
   }
   @keyframes splashLifecycle {
@@ -185,6 +185,9 @@
 </style>
 </head>
 <body>
+
+  <!-- Preload splash image -->
+  <link rel="preload" as="image" href="https://g2y4tnt455-dot.github.io/roadtrip/images/splash.jpg">
 
   <!-- SPLASH SCREEN -->
   <div class="splash" id="splash">
