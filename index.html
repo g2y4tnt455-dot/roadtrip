@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)file:///C:/Users/daniel/Downloads/index_22.html -->
+<!-- saved from url=(0046)file:///C:/Users/daniel/Downloads/index_6.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,8 +17,8 @@
     --nav-height: 64px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html, body { height: 100%; overflow: hidden; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--text); }
+  html, body { height: 100%; overflow: hidden; background: #0d3d52; }
+  body { font-family: 'DM Sans', sans-serif; background: #0d3d52; color: var(--text); }
   .app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
 
   .app-header { background: linear-gradient(135deg, var(--ocean-dark), var(--ocean)); color: white; padding: 14px 16px 12px; padding-top: calc(14px + env(safe-area-inset-top, 0px)); flex-shrink: 0; }
@@ -121,22 +121,25 @@
     background: #0d3d52;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    opacity: 0;
-    transition: opacity 3.5s ease;
+    animation: splashLifecycle 5s ease forwards;
   }
-  .splash.show { opacity: 1; }
+  @keyframes splashLifecycle {
+    0%   { opacity: 0; }
+    60%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
   .splash.hide { opacity: 0; pointer-events: none; }
   .app-blur { 
-    filter: blur(12px); 
-    opacity: 0.4; 
-    transition: filter 1.4s ease, opacity 1.4s ease;
+    opacity: 0;
+    transition: opacity 1.2s ease;
     display: flex;
     flex-direction: column;
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
   }
-  .app-blur.focus { filter: blur(0px); opacity: 1; }
+  .app-blur.focus { opacity: 1; }
   .splash-img {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
@@ -181,7 +184,7 @@
 <body>
 
   <!-- SPLASH SCREEN -->
-  <div class="splash hide" id="splash" style="transition: opacity 1.2s; display: none;">
+  <div class="splash" id="splash" style="display: none;">
     <img class="splash-img" src="./index_files/splash.jpg" alt="Splash">
     <div class="splash-overlay"></div>
     <div class="splash-content">
@@ -559,17 +562,13 @@ window.addEventListener('load', () => {
   const splash = document.getElementById('splash');
   const appWrap = document.getElementById('app-wrap');
   const bottomNav = document.querySelector('.bottom-nav');
-  // Fade in splash over 3.5 seconds
-  setTimeout(() => splash.classList.add('show'), 100);
-  // Fade out splash and focus app simultaneously
   setTimeout(() => {
-    splash.style.transition = 'opacity 1.2s ease';
-    splash.classList.remove('show');
-    splash.classList.add('hide');
     appWrap.classList.add('focus');
     bottomNav.classList.add('show');
-    setTimeout(() => splash.style.display = 'none', 1200);
-  }, 4500);
+  }, 4200);
+  setTimeout(() => {
+    splash.style.display = 'none';
+  }, 5000);
 });
 
 const BASE = 'https://g2y4tnt455-dot.github.io/roadtrip/';
