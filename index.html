@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)file:///C:/Users/daniel/Downloads/index_21.html -->
+<!-- saved from url=(0047)file:///C:/Users/daniel/Downloads/index_22.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -79,13 +79,13 @@
   .modal-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
   .modal-tag { font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.15); color: white; font-weight: 500; border: 1px solid rgba(255,255,255,0.25); }
   .modal-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .modal-btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 16px; border-radius: 12px; font-size: 0.82rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: transform 0.1s; }
+  .modal-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: transform 0.1s; }
   .modal-btn:active { transform: scale(0.96); }
   .btn-map { background: white; color: var(--ocean); }
   .btn-dir { background: var(--sunset); color: white; }
   .btn-search { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
   .btn-guide { background: #2d5a3d; color: white; }
-  .modal-swipe-hint { text-align: center; margin-top: 18px; font-size: 0.7rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
+  .modal-swipe-hint { text-align: center; margin-top: 16px; margin-bottom: 80px; font-size: 0.7rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
 
   .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-height); background: white; border-top: 1px solid var(--border); display: flex; align-items: center; z-index: 1000; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); padding-bottom: env(safe-area-inset-bottom, 0px); opacity: 0; transition: opacity 1.4s ease; }
   .bottom-nav.show { opacity: 1; }
@@ -602,10 +602,10 @@ function openModal(name, time, desc, imgPath, fallback, tagsStr, mapUrl, dirUrl,
   document.getElementById('modal-desc').textContent = desc;
 
   if (imgPath) {
+    inner.style.background = fallback;
     inner.style.backgroundImage = `url('${BASE}${imgPath}')`;
     inner.style.backgroundSize = 'cover';
     inner.style.backgroundPosition = 'center';
-    inner.style.background = '';
   } else {
     inner.style.backgroundImage = 'none';
     inner.style.background = fallback;
