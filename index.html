@@ -72,53 +72,18 @@
   .stop-card-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.6); font-size: 1.4rem; }
 
   /* MODAL */
-  .modal-backdrop { position: fixed; inset: 0; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; background: rgba(0,0,0,0.6); }
+  .modal-backdrop { position: fixed; inset: 0; z-index: 200; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; background: rgba(0,0,0,0.5); }
   .modal-backdrop.open { opacity: 1; pointer-events: all; }
-  .modal {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: #0d1f2d;
-    border-radius: 24px 24px 0 0;
-    display: flex; flex-direction: column;
-    max-height: 92vh;
-    transform: translateY(100%);
-    transition: transform 0.35s cubic-bezier(0.32,0.72,0,1);
-    overflow: hidden;
-  }
+  .modal { position: absolute; inset: 0; background-size: cover; background-position: center; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.32,0.72,0,1); }
   .modal-backdrop.open .modal { transform: translateY(0); }
-  .modal-drag-handle { width: 40px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; margin: 12px auto 0; flex-shrink: 0; }
-  .modal-img-wrap {
-    width: 100%;
-    flex-shrink: 0;
-    background: #0d1f2d;
-    display: flex; align-items: center; justify-content: center;
-    max-height: 45vh;
-    overflow: hidden;
-  }
-  .modal-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    max-height: 45vh;
-  }
-  .modal-img-gradient {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 4rem;
-    min-height: 180px;
-  }
-  .modal-content {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 16px 20px 32px;
-    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
-  }
-  .modal-time { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-  .modal-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; font-weight: 600; line-height: 1.2; margin-bottom: 10px; }
-  .modal-desc { font-size: 0.88rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 16px; }
+  .modal-bg-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,20,30,0.97) 0%, rgba(5,20,30,0.75) 40%, rgba(5,20,30,0.4) 70%, rgba(5,20,30,0.25) 100%); }
+  .modal-drag-handle { position: relative; z-index: 10; width: 40px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 2px; margin: 14px auto 0; }
+  .modal-content { position: relative; z-index: 5; margin-top: auto; padding: 20px 20px 32px; padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; max-height: 65vh; }
+  .modal-time { font-size: 0.72rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+  .modal-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; font-weight: 600; line-height: 1.2; margin-bottom: 10px; }
+  .modal-desc { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 16px; }
   .modal-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
-  .modal-tag { font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.1); color: white; font-weight: 500; border: 1px solid rgba(255,255,255,0.2); }
+  .modal-tag { font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.15); color: white; font-weight: 500; border: 1px solid rgba(255,255,255,0.25); }
   .modal-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .modal-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 12px; font-size: 0.82rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: transform 0.1s; }
   .modal-btn:active { transform: scale(0.96); }
@@ -572,6 +537,206 @@
         <div style="background:white;border-radius:14px;border:1px solid var(--border);padding:14px;"><h3 style="font-size:0.9rem;margin-bottom:8px;">🔗 Helpful Guides</h3><ul style="font-size:0.82rem;line-height:1.8;padding-left:16px;"><li><a href="https://www.earthtrekkers.com/samuel-h-boardman-state-scenic-corridor/" target="_blank" style="color:var(--ocean);">Samuel H. Boardman Corridor Guide</a></li><li><a href="https://www.nps.gov/redw/planyourvisit/accessibility.htm" target="_blank" style="color:var(--ocean);">Redwood NP Accessibility Guide</a></li><li><a href="https://www.nps.gov/redw/planyourvisit/ladybirdjohnsongrove.htm" target="_blank" style="color:var(--ocean);">Lady Bird Johnson Grove Guide</a></li><li><a href="https://sealioncaves.com/plan-your-visit" target="_blank" style="color:var(--ocean);">Sea Lion Caves Plan Your Visit</a></li><li><a href="https://www.blm.gov/visit/yaquina-head-outstanding-natural-area" target="_blank" style="color:var(--ocean);">Yaquina Head Lighthouse Info</a></li></ul></div>
         <div style="background:white;border-radius:14px;border:1px solid var(--border);padding:14px;"><h3 style="font-size:0.9rem;margin-bottom:8px;">📱 Install as App</h3><p style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;">iPhone: tap Share → Add to Home Screen<br>Android: tap menu → Add to Home Screen<br>Runs fullscreen with no browser bar!</p></div>
       </div>
+    </div><!-- end screen-tips -->
+
+    <div class="screen" id="screen-travel">
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:12px;padding-bottom:80px;">
+
+        <!-- FLIGHTS -->
+        <div style="background:linear-gradient(135deg,#0d3d52,#1a5f7a);border-radius:16px;overflow:hidden;">
+          <div style="padding:14px 16px 10px;border-bottom:1px solid rgba(255,255,255,0.1);">
+            <p style="font-size:0.68rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Travel Info</p>
+            <h3 style="font-size:1.1rem;color:white;font-family:'Playfair Display',serif;">✈️ Flights</h3>
+          </div>
+          <!-- Outbound -->
+          <div style="padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.08);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/flight-outbound.jpg" style="width:60px;height:60px;border-radius:10px;object-fit:cover;background:#0d3d52;" onerror="this.style.display='none'">
+              <div>
+                <p style="font-size:0.68rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;">Outbound · Thu July 9</p>
+                <p style="font-size:1rem;font-weight:600;color:white;">Austin → Portland</p>
+                <p style="font-size:0.78rem;color:rgba(255,255,255,0.7);">Alaska Airlines 541</p>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;font-size:0.8rem;color:rgba(255,255,255,0.85);line-height:1.9;">
+              <b style="color:white;">Departs:</b> 7:15 AM · AUS<br>
+              <b style="color:white;">Arrives:</b> 9:27 AM · PDX<br>
+              <b style="color:white;">Duration:</b> 4h 12m<br>
+              <b style="color:white;">Seats:</b> 30B, 30C · Economy<br>
+              <b style="color:white;">Confirmation:</b> CMEIDY<br>
+              <b style="color:white;">Expedia:</b> 73374304781089
+            </div>
+          </div>
+          <!-- Return -->
+          <div style="padding:14px 16px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/flight-return.jpg" style="width:60px;height:60px;border-radius:10px;object-fit:cover;background:#0d3d52;" onerror="this.style.display='none'">
+              <div>
+                <p style="font-size:0.68rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;">Return · Thu July 16</p>
+                <p style="font-size:1rem;font-weight:600;color:white;">Sacramento → Austin</p>
+                <p style="font-size:0.78rem;color:rgba(255,255,255,0.7);">Delta 3755 + Delta 622</p>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;font-size:0.8rem;color:rgba(255,255,255,0.85);line-height:1.9;">
+              <b style="color:white;">Leg 1:</b> Delta 3755 · SMF Terminal A → LAX Terminal 3<br>
+              <b style="color:white;">Departs:</b> 11:21 AM · Arrives: 1:01 PM · 1h 40m<br>
+              <b style="color:white;">Seats:</b> 12A, 12B<br>
+              <b style="color:rgba(255,200,100,1);">Layover LAX:</b> 2h 54m · Terminal 3<br>
+              <b style="color:white;">Leg 2:</b> Delta 622 · LAX → AUS<br>
+              <b style="color:white;">Departs:</b> 3:55 PM · Arrives: 8:58 PM · 3h 3m<br>
+              <b style="color:white;">Seats:</b> 29E, 29D<br>
+              <b style="color:white;">Confirmation:</b> H38JXE<br>
+              <b style="color:white;">Expedia:</b> 73374304781089
+            </div>
+          </div>
+        </div>
+
+        <!-- RENTAL CAR -->
+        <div style="background:linear-gradient(135deg,#2d5a3d,#1a3d2b);border-radius:16px;overflow:hidden;">
+          <div style="padding:14px 16px 10px;border-bottom:1px solid rgba(255,255,255,0.1);">
+            <h3 style="font-size:1.1rem;color:white;font-family:'Playfair Display',serif;">🚗 Rental Car</h3>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/car-rental.jpg" style="width:60px;height:60px;border-radius:10px;object-fit:cover;background:#1a3d2b;" onerror="this.style.display='none'">
+              <div>
+                <p style="font-size:0.68rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;">National Car Rental</p>
+                <p style="font-size:1rem;font-weight:600;color:white;">Chrysler Pacifica Van</p>
+                <p style="font-size:0.78rem;color:rgba(255,255,255,0.7);">Jul 9 – Jul 16</p>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;font-size:0.8rem;color:rgba(255,255,255,0.85);line-height:1.9;">
+              <b style="color:white;">Pick-up:</b> Thu Jul 9 · 9:30 AM<br>
+              <b style="color:rgba(255,255,255,0.6);">7240 NE Airport Way · Portland, OR</b><br>
+              <b style="color:white;">Drop-off:</b> Thu Jul 16 · 12:00 PM<br>
+              <b style="color:rgba(255,255,255,0.6);">6327 Aviation Dr · Sacramento, CA</b><br>
+              <b style="color:white;">Confirmation:</b> #69808376<br>
+              <b style="color:white;">Expedia:</b> 73378152380615
+            </div>
+            <a href="https://www.google.com/maps/dir/7240+NE+Airport+Way+Portland+OR" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:rgba(255,255,255,0.12);color:white;padding:8px 14px;border-radius:10px;font-size:0.78rem;font-weight:500;text-decoration:none;">📍 Pick-up Location</a>
+            <a href="https://www.google.com/maps/dir/6327+Aviation+Dr+Sacramento+CA" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;margin-left:8px;background:rgba(255,255,255,0.12);color:white;padding:8px 14px;border-radius:10px;font-size:0.78rem;font-weight:500;text-decoration:none;">📍 Drop-off Location</a>
+          </div>
+        </div>
+
+        <!-- HOTELS -->
+        <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);">
+          <div style="padding:14px 16px 10px;border-bottom:1px solid var(--border);background:var(--ocean-light);">
+            <h3 style="font-size:1.1rem;color:var(--ocean);font-family:'Playfair Display',serif;">🏨 Hotels</h3>
+          </div>
+
+          <!-- Hotel template macro -->
+          <div style="display:flex;flex-direction:column;">
+
+            <!-- Night 1 -->
+            <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/hotel-astoria.jpg" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--ocean-light);" onerror="this.style.display='none'">
+              <div style="flex:1;">
+                <p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Night 1 · Thu July 9 · Astoria</p>
+                <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px;">Cannery Pier Hotel & Spa</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">10 Basin Street, Astoria, OR 97103</p>
+                <p style="font-size:0.78rem;color:var(--text);line-height:1.8;">
+                  <b>Check-in:</b> 4:00 PM · <b>Check-out:</b> 11:00 AM<br>
+                  <b>Confirmation:</b> 192283857<br>
+                  <b>Expedia:</b> 73380212541899
+                </p>
+                <a href="https://www.google.com/maps/search/10+Basin+Street+Astoria+OR" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--ocean-light);color:var(--ocean);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:500;text-decoration:none;">📍 Directions</a>
+              </div>
+            </div>
+
+            <!-- Night 2 -->
+            <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/hotel-garibaldi.jpg" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--ocean-light);" onerror="this.style.display='none'">
+              <div style="flex:1;">
+                <p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Night 2 · Fri July 10 · Garibaldi</p>
+                <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px;">Harborview Inn & RV Park</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">302 South 7th Street, Garibaldi, OR 97118</p>
+                <p style="font-size:0.78rem;color:var(--text);line-height:1.8;">
+                  <b>Check-in:</b> 4:00 PM · <b>Check-out:</b> 11:00 AM<br>
+                  <b>Confirmation:</b> 2393803996<br>
+                  <b>Expedia:</b> 73374512208409
+                </p>
+                <a href="https://www.google.com/maps/search/302+South+7th+Street+Garibaldi+OR" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--ocean-light);color:var(--ocean);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:500;text-decoration:none;">📍 Directions</a>
+              </div>
+            </div>
+
+            <!-- Night 3 -->
+            <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/hotel-newport.jpg" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--ocean-light);" onerror="this.style.display='none'">
+              <div style="flex:1;">
+                <p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Night 3 · Sat July 11 · Newport</p>
+                <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px;">Travelodge by Wyndham Newport</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">1311 N. Coast Hwy 101, Newport, OR 97365</p>
+                <p style="font-size:0.78rem;color:var(--text);line-height:1.8;">
+                  <b>Check-in:</b> 3:00 PM · <b>Check-out:</b> 11:00 AM<br>
+                  <b>Confirmation:</b> 84410EE022809<br>
+                  <b>Expedia:</b> 73375361716445
+                </p>
+                <a href="https://www.google.com/maps/search/1311+N+Coast+Hwy+101+Newport+OR" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--ocean-light);color:var(--ocean);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:500;text-decoration:none;">📍 Directions</a>
+              </div>
+            </div>
+
+            <!-- Night 4 -->
+            <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/hotel-bandon.jpg" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--ocean-light);" onerror="this.style.display='none'">
+              <div style="flex:1;">
+                <p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Night 4 · Sun July 12 · Bandon</p>
+                <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px;">Bandon Inn</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">355 US-101, Bandon, OR 97411</p>
+                <p style="font-size:0.78rem;color:var(--text);line-height:1.8;">
+                  <b>Check-in:</b> 4:00 PM · <b>Check-out:</b> 11:00 AM<br>
+                  <b>Confirmation:</b> 40190SG048305<br>
+                  <b>Expedia:</b> 73375888198411
+                </p>
+                <a href="https://www.google.com/maps/search/355+US-101+Bandon+OR" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--ocean-light);color:var(--ocean);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:500;text-decoration:none;">📍 Directions</a>
+              </div>
+            </div>
+
+            <!-- Night 5 -->
+            <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/hotel-crescentcity.jpg" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--ocean-light);" onerror="this.style.display='none'">
+              <div style="flex:1;">
+                <p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Night 5 · Mon July 13 · Crescent City</p>
+                <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px;">Oceanview Inn</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">270 Highway 101 South, Crescent City, CA 95531</p>
+                <p style="font-size:0.78rem;color:var(--text);line-height:1.8;">
+                  <b>Check-in:</b> 3:00 PM · <b>Check-out:</b> 11:00 AM<br>
+                  <b>Confirmation:</b> OCVIEW2394554469E<br>
+                  <b>Expedia:</b> 73375404378698
+                </p>
+                <a href="https://www.google.com/maps/search/270+Highway+101+South+Crescent+City+CA" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--ocean-light);color:var(--ocean);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:500;text-decoration:none;">📍 Directions</a>
+              </div>
+            </div>
+
+            <!-- Night 6 -->
+            <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;">
+              <img src="https://g2y4tnt455-dot.github.io/roadtrip/images/hotel-mendocino.jpg" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--ocean-light);" onerror="this.style.display='none'">
+              <div style="flex:1;">
+                <p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Night 6 · Tue July 14 · Mendocino</p>
+                <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px;">SCP Mendocino Inn and Farm</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">8205 CA-1, Little River, CA 95456</p>
+                <p style="font-size:0.78rem;color:var(--text);line-height:1.8;">
+                  <b>Check-in:</b> 3:00 PM · <b>Check-out:</b> 11:00 AM<br>
+                  <b>Confirmation:</b> 191856368<br>
+                  <b>Expedia:</b> 73375411155430
+                </p>
+                <a href="https://www.google.com/maps/search/8205+CA-1+Little+River+CA" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--ocean-light);color:var(--ocean);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:500;text-decoration:none;">📍 Directions</a>
+              </div>
+            </div>
+
+            <!-- Night 7 -->
+            <div style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:70px;height:70px;border-radius:10px;background:var(--ocean-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;">🔲</div>
+              <div style="flex:1;">
+                <p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Night 7 · Wed July 15 · Sacramento</p>
+                <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:2px;">Hotel TBD — Near SMF Airport</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);">Confirmation details to be added when booked</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </div><!-- end main-content -->
@@ -581,8 +746,8 @@
   <!-- MODAL -->
   <div class="modal-backdrop" id="modal">
     <div class="modal" id="modal-inner">
+      <div class="modal-bg-overlay"></div>
       <div class="modal-drag-handle"></div>
-      <div class="modal-img-wrap" id="modal-img-wrap"></div>
       <div class="modal-content">
         <div class="modal-time" id="modal-time"></div>
         <div class="modal-name" id="modal-name"></div>
@@ -598,7 +763,8 @@
   <div class="bottom-nav">
     <div class="nav-btn active" id="nav-itinerary" onclick="showScreen('itinerary')"><div class="nav-icon">🗓️</div><div class="nav-label">Itinerary</div></div>
     <div class="nav-btn" id="nav-overview" onclick="showScreen('overview')"><div class="nav-icon">🗺️</div><div class="nav-label">Overview</div></div>
-    <div class="nav-btn" id="nav-tips" onclick="showScreen('tips')"><div class="nav-icon">💡</div><div class="nav-label">Tips & Links</div></div>
+    <div class="nav-btn" id="nav-travel" onclick="showScreen('travel')"><div class="nav-icon">✈️</div><div class="nav-label">Travel</div></div>
+    <div class="nav-btn" id="nav-tips" onclick="showScreen('tips')"><div class="nav-icon">💡</div><div class="nav-label">Tips</div></div>
   </div>
 
 <script>
@@ -638,7 +804,6 @@ function showDay(n) {
 
 function openModal(name, time, desc, imgPath, fallback, tagsStr, mapUrl, dirUrl, searchUrl, guideUrl) {
   const inner = document.getElementById('modal-inner');
-  const imgWrap = document.getElementById('modal-img-wrap');
   inner.style.transition = 'none';
   inner.style.transform = '';
 
@@ -646,12 +811,14 @@ function openModal(name, time, desc, imgPath, fallback, tagsStr, mapUrl, dirUrl,
   document.getElementById('modal-time').textContent = time;
   document.getElementById('modal-desc').textContent = desc;
 
-  // Set image or gradient
   if (imgPath) {
-    imgWrap.innerHTML = `<img src="${BASE}${imgPath}" alt="${name}" onerror="this.parentElement.innerHTML='<div class=modal-img-gradient style=background:${fallback.replace(/'/g,'"')}></div>'">`;
-    imgWrap.style.background = fallback;
+    inner.style.background = fallback;
+    inner.style.backgroundImage = `url('${BASE}${imgPath}')`;
+    inner.style.backgroundSize = 'cover';
+    inner.style.backgroundPosition = 'center';
   } else {
-    imgWrap.innerHTML = `<div class="modal-img-gradient" style="background:${fallback}"></div>`;
+    inner.style.backgroundImage = 'none';
+    inner.style.background = fallback;
   }
 
   document.getElementById('modal-tags').innerHTML = tagsStr.split(',').map(t => `<span class="modal-tag">${t.trim()}</span>`).join('');
