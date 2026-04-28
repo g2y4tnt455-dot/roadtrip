@@ -193,7 +193,18 @@
   <!-- Preload splash image -->
   <link rel="preload" as="image" href="https://g2y4tnt455-dot.github.io/roadtrip/images/splash.jpg">
 
-  <!-- SPLASH SCREEN -->
+  <!-- BIRTHDAY SPLASH - shows July 10 only -->
+  <div class="splash" id="birthday-splash" style="display:none;background:#0d3d52;">
+    <img class="splash-img" src="https://g2y4tnt455-dot.github.io/roadtrip/images/birthday.jpg" alt="Birthday">
+    <div class="splash-overlay"></div>
+    <div class="splash-content">
+      <div class="splash-title">🎉 Happy Birthday Becki!</div>
+      <div class="splash-sub">The Big 5-0!</div>
+      <div class="splash-dates">July 10, 2025 · Pacific Coast Adventure</div>
+    </div>
+  </div>
+
+  <!-- REGULAR SPLASH SCREEN -->
   <div class="splash" id="splash">
     <img class="splash-img" src="https://g2y4tnt455-dot.github.io/roadtrip/images/splash.jpg" alt="Splash">
     <div class="splash-overlay"></div>
@@ -776,15 +787,30 @@
 // Splash screen
 window.addEventListener('load', () => {
   const splash = document.getElementById('splash');
+  const birthdaySplash = document.getElementById('birthday-splash');
   const appWrap = document.getElementById('app-wrap');
   const bottomNav = document.querySelector('.bottom-nav');
-  setTimeout(() => {
-    appWrap.classList.add('focus');
-    bottomNav.classList.add('show');
-  }, 7000);
-  setTimeout(() => {
-    splash.style.display = 'none';
-  }, 8000);
+
+  const TEST_BIRTHDAY = false; // set to true to test birthday splash anytime
+  const today = new Date();
+  const isBirthday = TEST_BIRTHDAY || (today.getMonth() === 6 && today.getDate() === 10); // July 10
+
+  if (isBirthday) {
+    birthdaySplash.style.display = 'flex';
+    birthdaySplash.style.animation = 'splashLifecycle 8s ease forwards';
+    setTimeout(() => {
+      birthdaySplash.style.display = 'none';
+      appWrap.classList.add('focus');
+      bottomNav.classList.add('show');
+    }, 8000);
+  } else {
+    setTimeout(() => {
+      splash.classList.add('hide');
+      appWrap.classList.add('focus');
+      bottomNav.classList.add('show');
+      setTimeout(() => splash.style.display = 'none', 1200);
+    }, 7000);
+  }
 });
 
 const BASE = 'https://g2y4tnt455-dot.github.io/roadtrip/';
