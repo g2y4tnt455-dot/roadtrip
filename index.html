@@ -126,10 +126,9 @@
     background: #0d3d52;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    animation: splashLifecycle 8s ease forwards;
-    animation-delay: 0.3s;
     opacity: 0;
   }
+  .splash.animate { animation: splashLifecycle 8s ease forwards; }
   @keyframes splashLifecycle {
     0%   { opacity: 0; }
     60%  { opacity: 1; }
@@ -196,12 +195,6 @@
   <!-- BIRTHDAY SPLASH - shows July 10 only -->
   <div class="splash" id="birthday-splash" style="display:none;background:#0d3d52;">
     <img class="splash-img" src="https://g2y4tnt455-dot.github.io/roadtrip/images/birthday.jpg" alt="Birthday">
-    <div class="splash-overlay"></div>
-    <div class="splash-content">
-      <div class="splash-title">🎉 Happy Birthday Becki!</div>
-      <div class="splash-sub">The Big 5-0!</div>
-      <div class="splash-dates">July 10, 2025 · Pacific Coast Adventure</div>
-    </div>
   </div>
 
   <!-- REGULAR SPLASH SCREEN -->
@@ -791,11 +784,12 @@ window.addEventListener('load', () => {
   const appWrap = document.getElementById('app-wrap');
   const bottomNav = document.querySelector('.bottom-nav');
 
-  const TEST_BIRTHDAY = true; // set to true to test birthday splash anytime
+  const TEST_BIRTHDAY = true; // set to false after testing
   const today = new Date();
-  const isBirthday = TEST_BIRTHDAY || (today.getMonth() === 6 && today.getDate() === 10); // July 10
+  const isBirthday = TEST_BIRTHDAY || (today.getMonth() === 6 && today.getDate() === 10);
 
   if (isBirthday) {
+    splash.style.display = 'none';
     birthdaySplash.style.display = 'flex';
     birthdaySplash.style.animation = 'splashLifecycle 8s ease forwards';
     setTimeout(() => {
@@ -804,12 +798,13 @@ window.addEventListener('load', () => {
       bottomNav.classList.add('show');
     }, 8000);
   } else {
+    birthdaySplash.style.display = 'none';
+    splash.classList.add('animate');
     setTimeout(() => {
-      splash.classList.add('hide');
+      splash.style.display = 'none';
       appWrap.classList.add('focus');
       bottomNav.classList.add('show');
-      setTimeout(() => splash.style.display = 'none', 1200);
-    }, 7000);
+    }, 8000);
   }
 });
 
