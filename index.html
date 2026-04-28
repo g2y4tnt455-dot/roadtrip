@@ -782,11 +782,24 @@ window.addEventListener('DOMContentLoaded', () => {
     splashImg.src = 'https://g2y4tnt455-dot.github.io/roadtrip/images/birthday.jpg';
   }
   splash.classList.add('animate');
+
+  function dismissSplash() {
+    splash.style.transition = 'opacity 1.2s ease';
+    splash.style.opacity = '0';
+    setTimeout(() => {
+      splash.style.display = 'none';
+      appWrap.classList.add('focus');
+      bottomNav.classList.add('show');
+    }, 1200);
+    splash.removeEventListener('touchstart', dismissSplash);
+    splash.removeEventListener('click', dismissSplash);
+  }
+
+  // Wait for fade in to complete before allowing touch (about 5s in)
   setTimeout(() => {
-    splash.style.display = 'none';
-    appWrap.classList.add('focus');
-    bottomNav.classList.add('show');
-  }, 8000);
+    splash.addEventListener('touchstart', dismissSplash);
+    splash.addEventListener('click', dismissSplash);
+  }, 5000);
 });
 
 const BASE = 'https://g2y4tnt455-dot.github.io/roadtrip/';
