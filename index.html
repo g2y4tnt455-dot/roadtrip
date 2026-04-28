@@ -128,12 +128,10 @@
     align-items: center; justify-content: center;
     opacity: 0;
   }
-  .splash.animate { animation: splashLifecycle 8s ease forwards; }
-  @keyframes splashLifecycle {
+  .splash.animate { animation: splashIn 3s ease forwards; }
+  @keyframes splashIn {
     0%   { opacity: 0; }
-    60%  { opacity: 1; }
-    80%  { opacity: 1; }
-    100% { opacity: 0; }
+    100% { opacity: 1; }
   }
   .splash.hide { opacity: 0; pointer-events: none; }
   .app-blur { 
@@ -774,7 +772,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const appWrap = document.getElementById('app-wrap');
   const bottomNav = document.querySelector('.bottom-nav');
 
-  const TEST_BIRTHDAY = false; // set to false after testing
+  const TEST_BIRTHDAY = true; // set to false after testing
   const today = new Date();
   const isBirthday = TEST_BIRTHDAY || (today.getMonth() === 6 && today.getDate() === 10);
 
@@ -795,11 +793,11 @@ window.addEventListener('DOMContentLoaded', () => {
     splash.removeEventListener('click', dismissSplash);
   }
 
-  // Wait for fade in to complete before allowing touch (about 5s in)
+  // Allow touch after fade in completes (3s)
   setTimeout(() => {
     splash.addEventListener('touchstart', dismissSplash);
     splash.addEventListener('click', dismissSplash);
-  }, 5000);
+  }, 3000);
 });
 
 const BASE = 'https://g2y4tnt455-dot.github.io/roadtrip/';
