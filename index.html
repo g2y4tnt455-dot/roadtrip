@@ -773,7 +773,7 @@
 
 <script>
 // Splash screen
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
   const splash = document.getElementById('splash');
   const splashImg = splash.querySelector('.splash-img');
   const appWrap = document.getElementById('app-wrap');
@@ -786,7 +786,6 @@ window.addEventListener('load', () => {
   if (isBirthday) {
     splashImg.src = 'https://g2y4tnt455-dot.github.io/roadtrip/images/birthday.jpg';
   }
-
   splash.classList.add('animate');
   setTimeout(() => {
     splash.style.display = 'none';
