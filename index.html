@@ -192,11 +192,6 @@
   <!-- Preload splash image -->
   <link rel="preload" as="image" href="https://g2y4tnt455-dot.github.io/roadtrip/images/splash.jpg">
 
-  <!-- BIRTHDAY SPLASH - shows July 10 only -->
-  <div class="splash" id="birthday-splash" style="display:none;background:#0d3d52;">
-    <img class="splash-img" src="https://g2y4tnt455-dot.github.io/roadtrip/images/birthday.jpg" alt="Birthday">
-  </div>
-
   <!-- REGULAR SPLASH SCREEN -->
   <div class="splash" id="splash">
     <img class="splash-img" src="https://g2y4tnt455-dot.github.io/roadtrip/images/splash.jpg" alt="Splash">
@@ -780,7 +775,7 @@
 // Splash screen
 window.addEventListener('load', () => {
   const splash = document.getElementById('splash');
-  const birthdaySplash = document.getElementById('birthday-splash');
+  const splashImg = splash.querySelector('.splash-img');
   const appWrap = document.getElementById('app-wrap');
   const bottomNav = document.querySelector('.bottom-nav');
 
@@ -789,23 +784,15 @@ window.addEventListener('load', () => {
   const isBirthday = TEST_BIRTHDAY || (today.getMonth() === 6 && today.getDate() === 10);
 
   if (isBirthday) {
-    splash.style.display = 'none';
-    birthdaySplash.style.display = 'flex';
-    birthdaySplash.style.animation = 'splashLifecycle 8s ease forwards';
-    setTimeout(() => {
-      birthdaySplash.style.display = 'none';
-      appWrap.classList.add('focus');
-      bottomNav.classList.add('show');
-    }, 8000);
-  } else {
-    birthdaySplash.style.display = 'none';
-    splash.classList.add('animate');
-    setTimeout(() => {
-      splash.style.display = 'none';
-      appWrap.classList.add('focus');
-      bottomNav.classList.add('show');
-    }, 8000);
+    splashImg.src = 'https://g2y4tnt455-dot.github.io/roadtrip/images/birthday.jpg';
   }
+
+  splash.classList.add('animate');
+  setTimeout(() => {
+    splash.style.display = 'none';
+    appWrap.classList.add('focus');
+    bottomNav.classList.add('show');
+  }, 8000);
 });
 
 const BASE = 'https://g2y4tnt455-dot.github.io/roadtrip/';
